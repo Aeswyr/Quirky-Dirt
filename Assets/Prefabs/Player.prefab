@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2874228320986155300}
+  - component: {fileID: 3302140963346576651}
   - component: {fileID: -1664191371943623284}
   - component: {fileID: 2802490445067313589}
   - component: {fileID: 6107151790691504295}
@@ -38,6 +39,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3302140963346576651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4557000949727453514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 105d46e3e21063d4ebb46deca0f94c29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncDirection: 0
+  syncMode: 0
+  syncInterval: 0
+  rbody: {fileID: 6107151790691504295}
+  sprite: {fileID: -1664191371943623284}
+  baseSpeed: 6
 --- !u!212 &-1664191371943623284
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -150,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a553cb17010b2403e8523b558bffbc14, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   target: {fileID: 2874228320986155300}
@@ -184,7 +203,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c7e12ad9b9ae443c9fdf37e9f5ecd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   target: {fileID: 2874228320986155300}
@@ -218,7 +237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  syncDirection: 0
+  syncDirection: 1
   syncMode: 0
   syncInterval: 0
   clientAuthority: 0

@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1837464975591156391}
   - component: {fileID: 6106629693391480626}
-  - component: {fileID: -773218093265838775}
   - component: {fileID: 1122423376936713687}
+  - component: {fileID: 2047933827863784171}
+  - component: {fileID: 3737942740214529252}
   m_Layer: 0
   m_Name: NetworkHandler
   m_TagString: Untagged
@@ -76,20 +77,6 @@ MonoBehaviour:
     deliveryTimeEmaDuration: 2
   connectionQualityInterval: 3
   timeInterpolationGui: 0
---- !u!114 &-773218093265838775
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6706693391923067543}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6442dc8070ceb41f094e44de0bf87274, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  offsetX: 0
-  offsetY: 0
 --- !u!114 &1122423376936713687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -106,3 +93,59 @@ MonoBehaviour:
   Timeout: 25
   AllowSteamRelay: 1
   UseNextGenSteamNetworking: 1
+--- !u!114 &2047933827863784171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706693391923067543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc2aa57dfe3da9409a7d195f1a1eef0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  networkManager: {fileID: 6106629693391480626}
+--- !u!114 &3737942740214529252
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6706693391923067543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4882e1f0baaa18a45836edebb1e6b881, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settings: {fileID: 11400000, guid: 6cd8ed17cebd43e48ae648daa7ce0810, type: 2}
+  evtSteamInitialized:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2047933827863784171}
+        m_TargetAssemblyTypeName: SteamManager, Assembly-CSharp
+        m_MethodName: OnInit
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  evtSteamInitializationError:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2047933827863784171}
+        m_TargetAssemblyTypeName: SteamManager, Assembly-CSharp
+        m_MethodName: OnInitFailed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
