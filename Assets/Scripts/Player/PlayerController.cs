@@ -9,6 +9,10 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Rigidbody2D rbody;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private float baseSpeed;
+
+
+
+    [SyncVar(hook = nameof(UpdateFacing))] bool flipX;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,14 +26,25 @@ public class PlayerController : NetworkBehaviour
             
         rbody.velocity = baseSpeed * InputHandler.Instance.dir;
 
-        if (InputHandler.Instance.dir.x != 0)
-            sprite.flipX = InputHandler.Instance.dir.x < 0;
+        bool facing = InputHandler.Instance.dir.x < 0;
+        if (InputHandler.Instance.dir.x != 0 && flipX != facing) {
+            sprite.flipX = facing;
+            SyncFacing(facing);
+        }
 
         
 
 
 
-        if (InputHandler.Instance.pause.pressed)
+        if (InputHandler.Instance.pause.down)
             Application.Quit();
+    }
+
+    private void UpdateFacing(bool oldFacing, bool newFacing) {
+        sprite.flipX = newFacing;
+    }
+
+    [Command] public void SyncFacing(bool facing) {
+        flipX = facing;
     }
 }
