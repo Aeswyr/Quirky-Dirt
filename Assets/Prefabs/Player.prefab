@@ -57,7 +57,57 @@ MonoBehaviour:
   syncInterval: 0
   rbody: {fileID: 6107151790691504295}
   sprite: {fileID: -1664191371943623284}
+  animator: {fileID: 2802490445067313589}
   baseSpeed: 7
+  rollCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1.3
+      inSlope: -0.5760559
+      outSlope: -0.5760559
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.059043378
+    - serializedVersion: 3
+      time: 0.7
+      value: 0
+      inSlope: -2.6262887
+      outSlope: -2.6262887
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.04801333
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  controlOverrideWeight:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 1
+      outSlope: 1
+      tangentMode: 34
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0.22590348
+      outSlope: 0.22590348
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.052152336
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  redirectGraceWindow: 0.083333336
 --- !u!212 &-1664191371943623284
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -120,7 +170,7 @@ Animator:
   m_GameObject: {fileID: 4557000949727453514}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e5392304157ee02498a323699cbd5a49, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -241,7 +291,7 @@ MonoBehaviour:
   syncDirection: 1
   syncMode: 0
   syncInterval: 0
-  clientAuthority: 0
+  clientAuthority: 1
   animator: {fileID: 2802490445067313589}
 --- !u!114 &-2086938393541817319
 MonoBehaviour:

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d097b84d2d392f24bab18f26c33dcc84
+guid: c347c42118c97804398f583e6774c2eb
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -79,7 +79,7 @@ ScriptedImporter:
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
-    generateAnimationClips: 0
+    generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   asepriteImporterSettings:
@@ -91,11 +91,11 @@ ScriptedImporter:
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 0
     generateModelPrefab: 1
-    generateAnimationClips: 0
+    generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638323771515901218
+  platformSettingsDirtyTick: 638323680835621211
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,27 +119,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: obj_chest_Frame_0
-    originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 27
-      width: 20
-      height: 12
-    spriteID: a7ae6a8078f5c1d47b162570b3e2de7f
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 27}
-  - name: obj_chest_Frame_1
+  - name: enemy_test
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 7
@@ -148,9 +128,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 22
-      height: 15
-    spriteID: a71fcdc4ee49d684185b0f497056cfb0
+      width: 24
+      height: 25
+    spriteID: b56f6d87b4b9cfe4fb4b42a31ee60243
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,28 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: -160890419
-    name: obj_chest
+    guid: 181955559
+    name: enemy_test
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: obj_chest_Frame_0
+    - name: enemy_test
       frameIndex: 0
       cellRect:
-        x: 5
-        y: 9
-        width: 20
-        height: 12
-      spriteId: a7ae6a8078f5c1d47b162570b3e2de7f
-    - name: obj_chest_Frame_1
-      frameIndex: 1
-      cellRect:
         x: 3
-        y: 9
-        width: 22
-        height: 15
-      spriteId: a71fcdc4ee49d684185b0f497056cfb0
+        y: 1
+        width: 24
+        height: 25
+      spriteId: b56f6d87b4b9cfe4fb4b42a31ee60243
     linkedCells: []
     parentIndex: -1
   platformSettings:
