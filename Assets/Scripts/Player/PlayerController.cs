@@ -38,7 +38,7 @@ public class PlayerController : NetworkBehaviour
         if (!isLocalPlayer)
             return;
 
-        if (acting && Time.time < redirectTimer) {
+        if (acting && Time.time < redirectTimer && InputHandler.Instance.dir != Vector2.zero) {
             lastDir = InputHandler.Instance.dir;
             UpdateFacing();
         }
