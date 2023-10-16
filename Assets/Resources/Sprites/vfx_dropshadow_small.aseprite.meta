@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c347c42118c97804398f583e6774c2eb
+guid: b153d67d805ca154c91aeb47ddb2c9f9
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638325334892746470
+  platformSettingsDirtyTick: 638325335094276994
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,7 +119,7 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: enemy_test
+  - name: vfx_dropshadow_small
     originalName: 
     pivot: {x: 0.5, y: 0.5}
     alignment: 7
@@ -128,9 +128,9 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 26
-      height: 27
-    spriteID: b56f6d87b4b9cfe4fb4b42a31ee60243
+      width: 14
+      height: 6
+    spriteID: e286149f14943684a8d3c216d354c38c
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -142,20 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 181955559
-    name: enemy_test
+    guid: 1540632514
+    name: vfx_dropshadow_small
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: enemy_test
+    - name: vfx_dropshadow_small
       frameIndex: 0
       cellRect:
-        x: 3
-        y: 1
-        width: 24
-        height: 25
-      spriteId: b56f6d87b4b9cfe4fb4b42a31ee60243
+        x: 2
+        y: 2
+        width: 12
+        height: 4
+      spriteId: e286149f14943684a8d3c216d354c38c
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -197,4 +197,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 32}
+  canvasSize: {x: 16, y: 16}

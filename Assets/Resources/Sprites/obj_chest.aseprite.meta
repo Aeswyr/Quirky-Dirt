@@ -77,7 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 1
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
-    spritePadding: 0
+    spritePadding: 2
     generateModelPrefab: 1
     generateAnimationClips: 0
     addSortingGroup: 1
@@ -89,13 +89,13 @@ ScriptedImporter:
     defaultPivotSpace: 1
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
-    spritePadding: 0
+    spritePadding: 2
     generateModelPrefab: 1
     generateAnimationClips: 0
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638323771515901218
+  platformSettingsDirtyTick: 638325335024609152
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -127,9 +127,9 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 27
-      width: 20
-      height: 12
+      y: 29
+      width: 22
+      height: 14
     spriteID: a7ae6a8078f5c1d47b162570b3e2de7f
     spriteBone: []
     spriteOutline: []
@@ -138,7 +138,7 @@ ScriptedImporter:
     indices: 
     edges: []
     tessellationDetail: 0
-    uvTransform: {x: 4, y: 27}
+    uvTransform: {x: 4, y: 29}
   - name: obj_chest_Frame_1
     originalName: 
     pivot: {x: 0.5, y: 0.5}
@@ -148,8 +148,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 22
-      height: 15
+      width: 24
+      height: 17
     spriteID: a71fcdc4ee49d684185b0f497056cfb0
     spriteBone: []
     spriteOutline: []
