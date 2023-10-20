@@ -10,6 +10,10 @@ public class DestroyAfterDelay : MonoBehaviour
         lifetime += Time.time;
     }
 
+    public void Init(float lifetime) {
+        this.lifetime = lifetime;
+    }
+
     void FixedUpdate()
     {
         if (Time.time > lifetime)

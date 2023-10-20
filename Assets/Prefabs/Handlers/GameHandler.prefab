@@ -51,6 +51,7 @@ MonoBehaviour:
   syncInterval: 0
   attacks:
   - {fileID: 4344483876357949560, guid: 024d881fae21d3543813dd004da01497, type: 3}
+  - {fileID: 4344483876357949560, guid: 425d9ef02bcc2854cb0fcbd4a1d7e0ee, type: 3}
 --- !u!114 &5745636113124701095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,6 +68,11 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   floatingTextPrefab: {fileID: 3919895446234948789, guid: a86ac288b9e10af4f9b9575c8e582d56, type: 3}
+  vfxPrefab: {fileID: 4573334450998807739, guid: 31935b222b8d8b045b897e3a1898671d, type: 3}
+  vfxAnims:
+  - {fileID: -3468993706660125171, guid: e5c2482f021738d4e87bac30a8bb5e1b, type: 3}
+  - {fileID: -3708870206239030311, guid: 8089e82ce5e92d14d9c69474da1de784, type: 3}
+  - {fileID: 606319523854608553, guid: 7d691641277292948ada07d8756d56a4, type: 3}
 --- !u!114 &7733226799599661622
 MonoBehaviour:
   m_ObjectHideFlags: 0

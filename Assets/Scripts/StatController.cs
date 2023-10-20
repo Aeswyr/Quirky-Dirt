@@ -7,13 +7,15 @@ public class StatController : NetworkBehaviour
 {
     [SerializeField] private Team team;
 
-    public void OnHit(HitData data, StatController source) {
+    public bool OnHit(HitData data, StatController source) {
         PlayerController player;
 
         if ((gameObject.TryGetComponent(out player) || source.TryGetComponent(out player)) && !player.isLocalPlayer)
-            return;
+            return false;
         
         VFXManager.Instance.CreateFloatingText("5", Color.red, transform.position + 1.5f * Vector3.up);
+
+        return true;
     }
 
     public Team GetTeam() {return team;}

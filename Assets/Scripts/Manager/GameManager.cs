@@ -14,13 +14,18 @@ public class GameManager : NetworkSingleton<GameManager>
         GameObject attack = Instantiate(attacks[0], position, rotation);
 
         attack.GetComponent<SpriteRenderer>().flipY = flip;
-        attack.GetComponent<HitboxController>().Init(null, ownerId, team);
-
         NetworkServer.Spawn(attack);
+        
+        attack.GetComponent<HitboxController>().Init(null, ownerId, team);
     }
 
-    [Command(requiresAuthority = false)] public void CreateProjectile() {
+    [Command(requiresAuthority = false)] public void CreateProjectile(Vector3 position, Quaternion rotation, float speed, Team team, uint ownerId) {
+        GameObject attack = Instantiate(attacks[1], position, rotation);
 
+        attack.GetComponent<Rigidbody2D>().velocity = speed * (rotation * Vector3.right);
+        NetworkServer.Spawn(attack);
+        
+        attack.GetComponent<HitboxController>().Init(null, ownerId, team);
     }
 
     public void RegisterEntity(uint id, GameObject entity) {
