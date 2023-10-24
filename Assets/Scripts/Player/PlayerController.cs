@@ -39,6 +39,7 @@ public class PlayerController : NetworkBehaviour
     private int attackType = 0;
     bool charging;
     float chargeStart;
+    bool locked = false;
 
     private Vector2 mouseDir;
 
@@ -52,6 +53,14 @@ public class PlayerController : NetworkBehaviour
     // Update is called once per frame
     void FixedUpdate() {
         if (!isLocalPlayer)
+            return;
+
+        if (InputHandler.Instance.menu.pressed) {
+            locked = !locked;
+            InventoryManager.Instance.SetActive(locked);
+        }
+
+        if (locked)
             return;
 
         mouseDir = (Camera.main.ScreenToWorldPoint(InputHandler.Instance.mousePos) - transform.position).normalized;
