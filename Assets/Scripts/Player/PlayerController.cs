@@ -48,6 +48,11 @@ public class PlayerController : NetworkBehaviour
     void Start()
     {
         GameManager.Instance.RegisterEntity(netId, gameObject);
+
+        if (!isLocalPlayer)
+            return;
+
+        InventoryManager.Instance.SetActive(locked);
     }
 
     // Update is called once per frame
