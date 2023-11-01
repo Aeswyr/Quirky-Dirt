@@ -15,8 +15,8 @@ TagManager:
   - Entity
   - Hitbox
   - Hurtbox
-  - 
-  - 
+  - Interactable
+  - Interact
   - 
   - 
   - 

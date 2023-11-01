@@ -10,6 +10,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Animator animator;
     [SerializeField] private StatController stats;
+    [SerializeField] private BoxCollider2D pickupBox;
     
 
 
@@ -114,6 +115,12 @@ public class PlayerController : NetworkBehaviour
             controlOverrideWeight = rollOverrideWeight;
             curveStartTime = Time.time;
         } else if (TryAttack()) {}
+
+        if (InputHandler.Instance.interact.pressed) {
+            var results = new RaycastHit2D[1];
+            if (pickupBox.Cast(Vector2.zero, results) > 0)
+                results[0].transform.GetComponent<Interactable>().Trigger(this);
+        }
 
         if (InputHandler.Instance.pause.pressed)
             Application.Quit();

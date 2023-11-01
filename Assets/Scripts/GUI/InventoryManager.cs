@@ -31,15 +31,6 @@ public class InventoryManager : Singleton<InventoryManager>
             equipmentSlots[i].SetIndex(inventorySize + i);
             slots.Add(equipmentSlots[i]);
         }
-
-        AddItem(new Item {
-            iconID = 0,
-            types = new []{ItemType.MAINHAND, ItemType.OFFHAND}
-        });
-         AddItem(new Item {
-            iconID = 1,
-            types = new []{ItemType.MAINHAND}
-        });
     }
 
     public void AddItem(Item item) {
