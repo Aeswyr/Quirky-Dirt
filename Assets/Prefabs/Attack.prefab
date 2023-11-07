@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6218333806719946294
 Transform:
   m_ObjectHideFlags: 0
@@ -107,12 +107,13 @@ GameObject:
   - component: {fileID: 2313158947591456738}
   - component: {fileID: 3106295476125833232}
   - component: {fileID: 7631118775158707926}
+  - component: {fileID: -2785693711629797432}
   - component: {fileID: 6662140259240576558}
   - component: {fileID: 2367760003142840300}
   - component: {fileID: 4464976690889966114}
   - component: {fileID: -6762147845347330934}
   m_Layer: 8
-  m_Name: Projectile
+  m_Name: Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -149,7 +150,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
-  destroyOnHit: 1
+  destroyOnHit: 0
 --- !u!114 &3106295476125833232
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,6 +216,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &-2785693711629797432
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4344483876357949560}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a201075630645fd46aa60b95678075c4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6662140259240576558
 MonoBehaviour:
   m_ObjectHideFlags: 0

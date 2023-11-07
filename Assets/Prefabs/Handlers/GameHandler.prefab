@@ -49,9 +49,11 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  attackPrefab: {fileID: 4344483876357949560, guid: 425d9ef02bcc2854cb0fcbd4a1d7e0ee, type: 3}
   attacks:
-  - {fileID: 4344483876357949560, guid: 024d881fae21d3543813dd004da01497, type: 3}
-  - {fileID: 4344483876357949560, guid: 425d9ef02bcc2854cb0fcbd4a1d7e0ee, type: 3}
+  - {fileID: 395679643511926759, guid: 3f20a2ef25f4160448cb1b87d4831c07, type: 3}
+  - {fileID: -3708870206239030311, guid: 8089e82ce5e92d14d9c69474da1de784, type: 3}
+  - {fileID: -1775248216720910525, guid: 8125cd2360c779948ab5d8865728fb40, type: 3}
 --- !u!114 &5745636113124701095
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -397,6 +397,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  leftCombo: 000000000100000003000000
+  rightCombo: 0300000002000000
 --- !u!212 &-1664191371943623284
 SpriteRenderer:
   m_ObjectHideFlags: 0

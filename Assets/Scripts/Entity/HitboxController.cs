@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Mirror;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -36,8 +37,12 @@ public class HitboxController : NetworkBehaviour
         }
     }
 
-
+    public void SetDestroyOnHit(bool val) {
+        this.destroyOnHit = val;
+    }
 }
+
+
 
 public enum Team {
     DEFAULT, PLAYER, ENEMY

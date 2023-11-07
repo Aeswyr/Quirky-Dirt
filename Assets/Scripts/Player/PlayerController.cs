@@ -26,6 +26,14 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private AnimationCurve attackCurve;
     [SerializeField] private AnimationCurve attackOverrideWeight;
 
+    [SerializeField] private int[] leftCombo;
+    [SerializeField] private int[] rightCombo;
+
+    private enum ComboList {
+        DEFAULT, LEFT, RIGHT
+    }
+    private ComboList currentCombo;
+    private int comboIndex;
     [SyncVar(hook = nameof(SyncFacing))] bool flipX;
 
 
@@ -37,12 +45,13 @@ public class PlayerController : NetworkBehaviour
     private float redirectTimer;
     private float walkMotionTime;
     private int attackID = -1;
-    private int attackType = 0;
     bool charging;
     float chargeStart;
     bool locked = false;
+    bool inventoryOpen, pauseOpen;
 
     private Vector2 mouseDir;
+    Interactable nearestInteractable;
 
     bool cancellable, rollCancellable;
     // Start is called before the first frame update
@@ -53,7 +62,8 @@ public class PlayerController : NetworkBehaviour
         if (!isLocalPlayer)
             return;
 
-        InventoryManager.Instance.SetActive(locked);
+        InventoryManager.Instance.SetActive(inventoryOpen);
+        PauseManager.Instance.SetActive(pauseOpen);
     }
 
     // Update is called once per frame
@@ -61,9 +71,22 @@ public class PlayerController : NetworkBehaviour
         if (!isLocalPlayer)
             return;
 
-        if (InputHandler.Instance.menu.pressed) {
-            locked = !locked;
-            InventoryManager.Instance.SetActive(locked);
+        if (!pauseOpen && InputHandler.Instance.menu.pressed) {
+            inventoryOpen = !inventoryOpen;
+            locked = inventoryOpen;
+            InventoryManager.Instance.SetActive(inventoryOpen);
+        }
+
+        if (InputHandler.Instance.pause.pressed) {
+            if (inventoryOpen) {
+                inventoryOpen = false;
+                locked = inventoryOpen;
+                InventoryManager.Instance.SetActive(inventoryOpen);
+            } else {
+                pauseOpen = !pauseOpen;
+                locked = pauseOpen;
+                PauseManager.Instance.SetActive(pauseOpen);
+            }
         }
 
         if (locked)
@@ -102,11 +125,6 @@ public class PlayerController : NetworkBehaviour
             rbody.velocity = decelerationCurve.Evaluate(Time.time - walkMotionTime) * baseSpeed * lastDir;
         }
 
-        if (!acting && InputHandler.Instance.skill1.pressed) {
-            attackType = (attackType + 1) % 2;
-            attackID = -1;
-        }
-
         if ((!acting || (cancellable && rollCancellable) || charging) && InputHandler.Instance.dodge.pressed) {
             ToAction();
             animator.SetTrigger("dodge");
@@ -116,21 +134,52 @@ public class PlayerController : NetworkBehaviour
             curveStartTime = Time.time;
         } else if (TryAttack()) {}
 
-        if (InputHandler.Instance.interact.pressed) {
-            var results = new RaycastHit2D[1];
-            if (pickupBox.Cast(Vector2.zero, results) > 0)
-                results[0].transform.GetComponent<Interactable>().Trigger(this);
+        if (nearestInteractable != null && InputHandler.Instance.interact.pressed) {
+            nearestInteractable.Trigger(this);
         }
-
-        if (InputHandler.Instance.pause.pressed)
-            Application.Quit();
+            
+    }
+    private bool GetComboRelease(ComboList combo) {
+        return (combo == ComboList.LEFT && !InputHandler.Instance.primary.down)
+            || (combo == ComboList.RIGHT && !InputHandler.Instance.secondary.down);
     }
 
-    private bool TryAttack() {
-        if ((!acting || cancellable) && InputHandler.Instance.primary.pressed) {
-            if (attackType == 0) {
-                attackID = (attackID + 1) % 2;
+    private bool GetComboPressed(out ComboList combo) {
 
+        combo = ComboList.DEFAULT;
+        if (InputHandler.Instance.primary.pressed) {
+            combo = ComboList.LEFT;
+            return true;
+        }
+
+        if (InputHandler.Instance.secondary.pressed) {
+            combo = ComboList.RIGHT;
+            return true;
+        }
+
+        return false;
+    }
+
+    private bool IsNotChargeAttack(int id) {
+        return id != 2;
+    }
+    private bool TryAttack() {
+        if ((!acting || cancellable) && GetComboPressed(out ComboList nextCombo)) {
+            if (currentCombo != nextCombo) {
+                comboIndex = 0;
+            } else {
+                comboIndex++;
+            }
+
+            currentCombo = nextCombo;
+
+            int[] comboList = leftCombo;
+            if (currentCombo == ComboList.RIGHT)
+                comboList = rightCombo;
+
+            attackID = comboList[comboIndex];
+
+            if (IsNotChargeAttack(attackID)) {
                 ToAction(false);
                 animator.SetInteger("attackID", attackID);
                 animator.SetTrigger("attack");
@@ -144,12 +193,13 @@ public class PlayerController : NetworkBehaviour
                 UpdateFacing(true);
 
                 return true;
-            } else if (attackType == 1) {
+            } else {
                 ToAction(false);
 
                 charging = true;
                 chargeStart = Time.time;
-                animator.SetInteger("attackID", 2);
+                animator.SetInteger("followup", 0);
+                animator.SetInteger("attackID", attackID);
                 animator.SetTrigger("attack");
 
                 activeCurve = decelerationCurve;
@@ -160,10 +210,11 @@ public class PlayerController : NetworkBehaviour
 
                 return true;
             }
-        } else if (charging && Time.time - chargeStart > 0.2 && !InputHandler.Instance.primary.down) {
+        } else if (charging && Time.time - chargeStart > 0.2 && GetComboRelease(currentCombo)) {
             ToAction(false);
 
-            animator.SetInteger("attackID", 3);
+            animator.SetInteger("followup", 1);
+            animator.SetInteger("attackID", attackID);
             animator.SetTrigger("attack");
 
             lastDir = mouseDir * -1;
@@ -203,14 +254,19 @@ public class PlayerController : NetworkBehaviour
         rollCancellable = false;
         
         attackID = -1;
+        currentCombo = ComboList.DEFAULT;
     }
 
     public void SetCancellable() {
         if (!isLocalPlayer)
             return;
 
-        cancellable = true;
-        rollCancellable = true;
+
+        if ((currentCombo == ComboList.LEFT && comboIndex + 1 < leftCombo.Length) 
+            || (currentCombo == ComboList.RIGHT && comboIndex + 1 < rightCombo.Length)) {
+            cancellable = true;
+            rollCancellable = true;
+        }
     }
 
      public void SetAttackCancellable() {
@@ -225,14 +281,41 @@ public class PlayerController : NetworkBehaviour
         if (!isLocalPlayer)
             return;
         Quaternion rotation = Quaternion.FromToRotation(Vector2.right, mouseDir);
-        switch (attackType) {
+        var attack = GameManager.Instance.CreateAttack(Team.PLAYER, netId);
+        switch (attackID) {
             case 0:
-                bool flip = mouseDir.x >= 0 ? attackID == 0 : attackID == 1;
-                GameManager.Instance.CreateAttack(transform.position + 0.5f * Vector3.up + rotation * (1.25f * Vector2.right), rotation, flip, Team.PLAYER, netId);
-                break;
             case 1:
+                bool flip = mouseDir.x >= 0 ? attackID == 0 : attackID == 1;
+                attack
+                    .SetType(AttackType.DEFAULT)
+                    .SetHitboxSize(new Vector2(1.5f, 1))
+                    .SetHitboxOffset(new Vector2(0, 0.0625f))
+                    .SetPosition(transform.position + 0.5f * Vector3.up + rotation * (1.25f * Vector2.right))
+                    .SetRotation(rotation)
+                    .SetFlip(flip)
+                    .Finish();
+                break;
+            case 2:
                 VFXManager.Instance.CreateVFX(VFXType.VFX_SHOOT, transform.position + 0.5f * Vector3.up + rotation * (2f * Vector2.right), rotation);
-                GameManager.Instance.CreateProjectile(transform.position + 0.5f * Vector3.up + rotation * (1.25f * Vector2.right), rotation, 30, Team.PLAYER, netId);
+                attack
+                    .SetType(AttackType.ARROW)
+                    .SetHitboxSize(new Vector2(0.5f, 0.25f))
+                    .SetPosition(transform.position + 0.5f * Vector3.up + rotation * (1.25f * Vector2.right))
+                    .SetRotation(rotation)
+                    .SetVelocity(rotation * Vector2.right, 30)
+                    .SetLifetime(10)
+                    .EnableDestroyOnHit()
+                    .EnableDestroyOnWall()
+                    .Finish();
+                break;
+            case 3:
+                attack
+                    .SetType(AttackType.FLASH_CUT)
+                    .SetHitboxSize(new Vector2(3.5f, 1))
+                    .SetHitboxOffset(new Vector2(0, 0.0625f))
+                    .SetPosition(transform.position + 0.5f * Vector3.up + rotation * (2.75f * Vector2.right))
+                    .SetRotation(rotation)
+                    .Finish();
                 break;
         }
     }
@@ -258,5 +341,13 @@ public class PlayerController : NetworkBehaviour
 
     [Command] public void SendFacing(bool facing) {
         flipX = facing;
+    }
+
+    public void SetNearestInteractable(Interactable nearest) {
+        nearestInteractable = nearest;
+    }
+
+    public Interactable GetNearestInteractable() {
+        return nearestInteractable;
     }
 }
