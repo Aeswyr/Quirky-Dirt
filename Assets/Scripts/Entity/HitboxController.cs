@@ -14,10 +14,37 @@ public class HitboxController : NetworkBehaviour
     private Team team;
     private List<StatController> hitTargets = new();
     private HitData data;
-    [ClientRpc] public void Init(HitData data, uint ownerId, Team team) {
+
+    [SyncVar] private GameManager.AttackBuilder initialData;
+    [ClientRpc] public void Init(HitData data, GameManager.AttackBuilder attack) {
         this.data = data;
-        this.owner = GameManager.Instance.GetRegisteredEntity(ownerId);
-        this.team = team;
+    }
+
+    void Start() {
+        this.team = initialData.team;
+
+        gameObject.GetComponent<SpriteRenderer>().flipY = initialData.flip;
+
+        gameObject.GetComponent<Rigidbody2D>().velocity = initialData.velocity;
+
+        var col = gameObject.GetComponent<BoxCollider2D>();
+        col.offset = initialData.hitboxOffset;
+        col.size = initialData.hitboxSize;
+
+        Animator animator = gameObject.GetComponent<Animator>();
+        AnimatorOverrideController animController = new AnimatorOverrideController(animator.runtimeAnimatorController);
+        animController["attack"] = GameManager.Instance.GetAttackClip(initialData.type);
+        animator.runtimeAnimatorController = animController;
+
+        var dad = gameObject.GetComponent<DestroyAfterDelay>();
+        dad.Init(GameManager.Instance.GetAttackClip(initialData.type).length - 1/60f);
+        if (initialData.lifetime != 0) {
+            dad.Init(initialData.lifetime);
+        }
+
+        this.destroyOnHit = initialData.destoryOnHit;
+
+        this.owner = GameManager.Instance.GetRegisteredEntity(initialData.ownerID);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -39,6 +66,10 @@ public class HitboxController : NetworkBehaviour
 
     public void SetDestroyOnHit(bool val) {
         this.destroyOnHit = val;
+    }
+
+    public void SetInitialData(GameManager.AttackBuilder initData) {
+        this.initialData = initData;
     }
 }
 

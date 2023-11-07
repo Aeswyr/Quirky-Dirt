@@ -20,12 +20,14 @@ public class GameManager : NetworkSingleton<GameManager>
         return newAttack;
     }
 
-    [Command(requiresAuthority = false)] public void CreateAttack(AttackBuilder data) {
+    /*[Command(requiresAuthority = false)] public void CreateAttack(AttackBuilder data) {
         GameObject attack = Instantiate(attackPrefab, data.position, data.rotation);
 
         attack.GetComponent<SpriteRenderer>().flipY = data.flip;
 
         attack.GetComponent<Rigidbody2D>().velocity = data.velocity;
+
+        
 
         var col = attack.GetComponent<BoxCollider2D>();
         col.offset = data.hitboxOffset;
@@ -52,6 +54,23 @@ public class GameManager : NetworkSingleton<GameManager>
         NetworkServer.Spawn(attack);
         
         hitController.Init(null, data.ownerID, data.team);
+    }*/
+
+    [Command(requiresAuthority = false)] public void CreateAttack(AttackBuilder data) {
+        GameObject attack = Instantiate(attackPrefab, data.position, data.rotation);
+
+        attack.GetComponent<HitboxController>().SetInitialData(data);
+
+        if (data.enableWallCollisions)
+            attack.transform.GetChild(0).gameObject.SetActive(true);
+
+        NetworkServer.Spawn(attack);
+
+        //hitController.Init(null, data.ownerID, data.team);
+    }
+
+    public AnimationClip GetAttackClip(AttackType type) {
+        return attacks[(int)type];
     }
 
     public void RegisterEntity(uint id, GameObject entity) {
