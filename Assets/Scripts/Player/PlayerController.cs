@@ -93,8 +93,17 @@ public class PlayerController : NetworkBehaviour
             }
         }
 
-        if (locked)
+        if (locked) {
+            if (activeCurve != null) {
+                float controlOverride = controlOverrideWeight == null ? 0 : controlOverrideWeight.Evaluate(Time.time - curveStartTime);
+                Vector2 avgDir = (1 - controlOverride) * lastDir + controlOverride * InputHandler.Instance.dir;
+                rbody.velocity =  activeCurve.Evaluate(Time.time - curveStartTime) * baseSpeed * avgDir;
+            } else {
+                animator.SetBool("running", false);
+                rbody.velocity = decelerationCurve.Evaluate(Time.time - walkMotionTime) * baseSpeed * lastDir;
+            }
             return;
+        }
 
         mouseDir = (Camera.main.ScreenToWorldPoint(InputHandler.Instance.mousePos) - transform.position).normalized;
 
