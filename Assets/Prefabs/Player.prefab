@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 2874228320986155300}
   - component: {fileID: 2788052525064322354}
   - component: {fileID: 3302140963346576651}
+  - component: {fileID: 1442711037819117156}
   - component: {fileID: -1664191371943623284}
   - component: {fileID: 2802490445067313589}
   - component: {fileID: 6107151790691504295}
@@ -399,6 +400,21 @@ MonoBehaviour:
     m_RotationOrder: 4
   leftCombo: 000000000100000003000000
   rightCombo: 030000000200000002000000
+--- !u!114 &1442711037819117156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4557000949727453514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aae5decd1b780084b8bb025e8efa6063, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprite: {fileID: -1664191371943623284}
+  shaders:
+  - {fileID: 2100000, guid: 0ab80724511c91c4da2a5845e5388873, type: 2}
 --- !u!212 &-1664191371943623284
 SpriteRenderer:
   m_ObjectHideFlags: 0

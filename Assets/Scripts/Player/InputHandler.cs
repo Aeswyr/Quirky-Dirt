@@ -43,8 +43,11 @@ public class InputHandler : Singleton<InputHandler>
     public ButtonState skill3 {
         get{return buttons[9];}
     }
+    public ButtonState tool {
+        get{return buttons[10];}
+    }
     public ButtonState any {
-        get {return buttons[10];}
+        get {return buttons[11];}
     }
 
     [SerializeField] private int buttonCount = 1;
@@ -111,8 +114,12 @@ public class InputHandler : Singleton<InputHandler>
         this.buttons[9].Set(ctx);
     }
 
-    public void Any(InputAction.CallbackContext ctx) {
+    public void Tool(InputAction.CallbackContext ctx) {
         this.buttons[10].Set(ctx);
+    }
+
+    public void Any(InputAction.CallbackContext ctx) {
+        this.buttons[11].Set(ctx);
     }
 
     public void MousePos(InputAction.CallbackContext ctx) {

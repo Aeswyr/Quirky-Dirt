@@ -78,6 +78,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Tool",
+                    "type": "Button",
+                    "id": "cde3dccf-c979-4a81-9fd9-085f1328c3a2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Pause",
                     "type": "Button",
                     "id": "dd5b4282-c759-4d97-b958-9ff187800c7f",
@@ -217,7 +226,7 @@
                 {
                     "name": "",
                     "id": "88b08b81-1b37-4403-9556-3954844056f3",
-                    "path": "<Keyboard>/shift",
+                    "path": "<Keyboard>/r",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -228,7 +237,7 @@
                 {
                     "name": "",
                     "id": "7f616c9e-a2c6-48a7-8782-3acf3da1bd8e",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -239,7 +248,7 @@
                 {
                     "name": "",
                     "id": "dbdb36e7-8c50-445d-9c28-a8afb966696d",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/c",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -288,6 +297,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Any",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c14d11c1-df85-49b5-8405-c2ec127d9f08",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Tool",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

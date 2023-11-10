@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3d6ea37d097a63448847d88057aabf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonCount: 11
+  buttonCount: 12
   bufferFrames: 10
   bufferEnabled: 1
 --- !u!114 &1468188014748407848
@@ -266,6 +266,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: f8409c71-fd31-4448-ab40-92887ec8bc4c
     m_ActionName: Player/Any[/Keyboard/anyKey]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7195990958050690415}
+        m_TargetAssemblyTypeName: InputHandler, Assembly-CSharp
+        m_MethodName: Tool
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: cde3dccf-c979-4a81-9fd9-085f1328c3a2
+    m_ActionName: Player/Tool[/Keyboard/leftShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

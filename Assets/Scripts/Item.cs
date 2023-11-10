@@ -11,5 +11,5 @@ public struct Item
 
 
 public enum ItemType {
-    NONE, MAINHAND, OFFHAND, ARMOR, TRINKET
+    NONE, MAINHAND, OFFHAND, ARMOR, TOOL, TRINKET
 }

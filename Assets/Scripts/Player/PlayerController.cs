@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
+using Cinemachine;
 
 public class PlayerController : NetworkBehaviour
 { 
@@ -61,6 +62,9 @@ public class PlayerController : NetworkBehaviour
 
         if (!isLocalPlayer)
             return;
+
+        var cam = FindObjectOfType<CinemachineVirtualCamera>();
+        cam.Follow = transform;
 
         InventoryManager.Instance.SetActive(inventoryOpen);
         PauseManager.Instance.SetActive(pauseOpen);

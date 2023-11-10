@@ -629,7 +629,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 943081688642610953, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: m_Name
-      value: Slot_Trinket1
+      value: Slot_Tool
       objectReference: {fileID: 0}
     - target: {fileID: 7083437342547313756, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: type
@@ -638,7 +638,7 @@ PrefabInstance:
     - target: {fileID: 7083437342547313756, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: emptySprite
       value: 
-      objectReference: {fileID: -4457463891004133246, guid: 5737cb93e77082941aa7250cb98d78ac, type: 3}
+      objectReference: {fileID: 7236694896194908318, guid: 2dc90dad07b1ca64f99279bc3f5a4aa1, type: 3}
     - target: {fileID: 9206523508867162288, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -750,11 +750,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 943081688642610953, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: m_Name
-      value: Slot_Trinket2
+      value: Slot_Trinket
       objectReference: {fileID: 0}
     - target: {fileID: 7083437342547313756, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: type
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7083437342547313756, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: emptySprite
