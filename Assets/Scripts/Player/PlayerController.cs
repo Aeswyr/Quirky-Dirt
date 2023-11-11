@@ -138,7 +138,8 @@ public class PlayerController : NetworkBehaviour
             rbody.velocity = decelerationCurve.Evaluate(Time.time - walkMotionTime) * baseSpeed * lastDir;
         }
 
-        if ((!acting || (cancellable && rollCancellable) || charging) && InputHandler.Instance.dodge.pressed) {
+        if ((!acting || (cancellable && rollCancellable) || charging) && stats.CanSpendStam(1) && InputHandler.Instance.dodge.pressed) {
+            stats.SpendStam(1);
             ToAction();
             animator.SetTrigger("dodge");
 

@@ -65,8 +65,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Look, a menu that opens when you press pause instead of just closing the
-    game! )fuck you travis <3(
+  m_text: Look, a menu that opens when you press escape instead of just closing the
+    game!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 91f26cf6ec526e0469930bfe15dd2b7e, type: 2}
   m_sharedMaterial: {fileID: -8298956093521907, guid: 91f26cf6ec526e0469930bfe15dd2b7e, type: 2}
