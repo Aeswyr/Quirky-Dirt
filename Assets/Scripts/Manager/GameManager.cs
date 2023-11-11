@@ -11,62 +11,25 @@ public class GameManager : NetworkSingleton<GameManager>
 
     Dictionary<uint, GameObject> syncedEntities = new();
 
-    public AttackBuilder CreateAttack(Team team, uint ownerID) {
+    public AttackBuilder CreateAttack(int attackID, Team team, uint ownerID) {
         AttackBuilder newAttack = new AttackBuilder() {
             team = team,
             ownerID = ownerID,
-            rotation = Quaternion.identity
+            rotation = Quaternion.identity,
+            attackID = attackID
         };
         return newAttack;
     }
 
-    /*[Command(requiresAuthority = false)] public void CreateAttack(AttackBuilder data) {
-        GameObject attack = Instantiate(attackPrefab, data.position, data.rotation);
-
-        attack.GetComponent<SpriteRenderer>().flipY = data.flip;
-
-        attack.GetComponent<Rigidbody2D>().velocity = data.velocity;
-
-        
-
-        var col = attack.GetComponent<BoxCollider2D>();
-        col.offset = data.hitboxOffset;
-        col.size = data.hitboxSize;
-
-
-        Animator animator = attack.GetComponent<Animator>();
-        AnimatorOverrideController animController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-        animController["attack"] = attacks[(int)data.type];
-        animator.runtimeAnimatorController = animController;
-
-        var dad = attack.GetComponent<DestroyAfterDelay>();
-        dad.Init(attacks[(int)data.type].length - 1/60f);
-        if (data.lifetime != 0) {
-            dad.Init(data.lifetime);
-        }
-
-        var hitController = attack.GetComponent<HitboxController>();
-        hitController.SetDestroyOnHit(data.destoryOnHit);
-
-        if (data.enableWallCollisions)
-            attack.transform.GetChild(0).gameObject.SetActive(true);
-
-        NetworkServer.Spawn(attack);
-        
-        hitController.Init(null, data.ownerID, data.team);
-    }*/
-
     [Command(requiresAuthority = false)] public void CreateAttack(AttackBuilder data) {
         GameObject attack = Instantiate(attackPrefab, data.position, data.rotation);
 
-        attack.GetComponent<HitboxController>().SetInitialData(data);
+        attack.GetComponent<HitboxController>().SetAttackData(data);
 
         if (data.enableWallCollisions)
             attack.transform.GetChild(0).gameObject.SetActive(true);
 
         NetworkServer.Spawn(attack);
-
-        //hitController.Init(null, data.ownerID, data.team);
     }
 
     public AnimationClip GetAttackClip(AttackType type) {
@@ -82,6 +45,7 @@ public class GameManager : NetworkSingleton<GameManager>
     }
 
     public struct AttackBuilder {
+        public int attackID;
         public AttackType type;
         public Vector2 hitboxSize;
         public Vector2 hitboxOffset;

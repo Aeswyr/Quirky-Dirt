@@ -64,7 +64,7 @@ public class StatController : NetworkBehaviour
         if ((gameObject.TryGetComponent(out player) || source.TryGetComponent(out player)) && !player.isLocalPlayer)
             return false;
         
-        VFXManager.Instance.CreateFloatingText("5", Color.red, transform.position + 1.5f * Vector3.up);
+        VFXManager.Instance.CreateFloatingText($"{data.GetDamage(0, 0)}", Color.red, transform.position + 1.5f * Vector3.up);
 
         return true;
     }

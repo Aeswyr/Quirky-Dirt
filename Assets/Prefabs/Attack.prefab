@@ -150,6 +150,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  attackDictionary: {fileID: 11400000, guid: b1b18f3860411d84a876c6b40f84c269, type: 2}
   destroyOnHit: 0
 --- !u!114 &3106295476125833232
 MonoBehaviour:

@@ -27,6 +27,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private AnimationCurve attackCurve;
     [SerializeField] private AnimationCurve attackOverrideWeight;
 
+    [SerializeField] private AttackDictionary attackDictionary;
     [SerializeField] private int[] leftCombo;
     [SerializeField] private int[] rightCombo;
 
@@ -174,9 +175,6 @@ public class PlayerController : NetworkBehaviour
         return false;
     }
 
-    private bool IsNotChargeAttack(int id) {
-        return id != 2;
-    }
     private bool TryAttack() {
         if ((!acting || cancellable) && GetComboPressed(out ComboList nextCombo)) {
             if (currentCombo != nextCombo) {
@@ -192,10 +190,12 @@ public class PlayerController : NetworkBehaviour
                 comboList = rightCombo;
 
             attackID = comboList[comboIndex];
+            AttackData attack = attackDictionary.GetAttack(attackID);
+            
 
-            if (IsNotChargeAttack(attackID)) {
+            if (!attack.IsCharged) {
                 ToAction(false);
-                animator.SetInteger("attackID", attackID);
+                animator.SetInteger("attackID", attack.AnimationID);
                 animator.SetTrigger("attack");
 
                 lastDir = mouseDir;
@@ -213,7 +213,7 @@ public class PlayerController : NetworkBehaviour
                 charging = true;
                 chargeStart = Time.time;
                 animator.SetInteger("followup", 0);
-                animator.SetInteger("attackID", attackID);
+                animator.SetInteger("attackID", attack.AnimationID);
                 animator.SetTrigger("attack");
 
                 activeCurve = decelerationCurve;
@@ -228,7 +228,7 @@ public class PlayerController : NetworkBehaviour
             ToAction(false);
 
             animator.SetInteger("followup", 1);
-            animator.SetInteger("attackID", attackID);
+            animator.SetInteger("attackID", attackDictionary.GetAttack(attackID).AnimationID);
             animator.SetTrigger("attack");
 
             lastDir = mouseDir * -1;
@@ -295,7 +295,7 @@ public class PlayerController : NetworkBehaviour
         if (!isLocalPlayer)
             return;
         Quaternion rotation = Quaternion.FromToRotation(Vector2.right, mouseDir);
-        var attack = GameManager.Instance.CreateAttack(Team.PLAYER, netId);
+        var attack = GameManager.Instance.CreateAttack(attackID, Team.PLAYER, netId);
         switch (attackID) {
             case 0:
             case 1:

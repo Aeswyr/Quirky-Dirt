@@ -9,42 +9,36 @@ using UnityEngine.Events;
 
 public class HitboxController : NetworkBehaviour
 {
+    [SerializeField] private AttackDictionary attackDictionary;
     [SerializeField] private bool destroyOnHit;
     private GameObject owner;
-    private Team team;
     private List<StatController> hitTargets = new();
-    private HitData data;
 
-    [SyncVar] private GameManager.AttackBuilder initialData;
-    [ClientRpc] public void Init(HitData data, GameManager.AttackBuilder attack) {
-        this.data = data;
-    }
+    [SyncVar] private GameManager.AttackBuilder data;
 
     void Start() {
-        this.team = initialData.team;
+        gameObject.GetComponent<SpriteRenderer>().flipY = data.flip;
 
-        gameObject.GetComponent<SpriteRenderer>().flipY = initialData.flip;
-
-        gameObject.GetComponent<Rigidbody2D>().velocity = initialData.velocity;
+        gameObject.GetComponent<Rigidbody2D>().velocity = data.velocity;
 
         var col = gameObject.GetComponent<BoxCollider2D>();
-        col.offset = initialData.hitboxOffset;
-        col.size = initialData.hitboxSize;
+        col.offset = data.hitboxOffset;
+        col.size = data.hitboxSize;
 
         Animator animator = gameObject.GetComponent<Animator>();
         AnimatorOverrideController animController = new AnimatorOverrideController(animator.runtimeAnimatorController);
-        animController["attack"] = GameManager.Instance.GetAttackClip(initialData.type);
+        animController["attack"] = GameManager.Instance.GetAttackClip(data.type);
         animator.runtimeAnimatorController = animController;
 
         var dad = gameObject.GetComponent<DestroyAfterDelay>();
-        dad.Init(GameManager.Instance.GetAttackClip(initialData.type).length - 1/60f);
-        if (initialData.lifetime != 0) {
-            dad.Init(initialData.lifetime);
+        dad.Init(GameManager.Instance.GetAttackClip(data.type).length - 1/60f);
+        if (data.lifetime != 0) {
+            dad.Init(data.lifetime);
         }
 
-        this.destroyOnHit = initialData.destoryOnHit;
+        this.destroyOnHit = data.destoryOnHit;
 
-        this.owner = GameManager.Instance.GetRegisteredEntity(initialData.ownerID);
+        this.owner = GameManager.Instance.GetRegisteredEntity(data.ownerID);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -55,10 +49,10 @@ public class HitboxController : NetworkBehaviour
     IEnumerator OnHit(Collider2D other) {
         yield return new WaitUntil(() => owner != null);
 
-        if (other.transform.parent.gameObject != owner && other.transform.parent.TryGetComponent(out StatController stats) && stats.GetTeam() != team && !hitTargets.Contains(stats)) {
+        if (other.transform.parent.gameObject != owner && other.transform.parent.TryGetComponent(out StatController stats) && stats.GetTeam() != data.team && !hitTargets.Contains(stats)) {
             VFXManager.Instance.CreateVFX(VFXType.VFX_HIT, 0.5f * (transform.position + other.transform.position), Quaternion.identity);
             hitTargets.Add(stats);
-            if (stats.OnHit(data, owner.GetComponent<StatController>()) && destroyOnHit) {
+            if (stats.OnHit(attackDictionary.GetAttack(data.attackID).Data, owner.GetComponent<StatController>()) && destroyOnHit) {
                 NetworkServer.Destroy(gameObject);
             }
         }
@@ -68,8 +62,8 @@ public class HitboxController : NetworkBehaviour
         this.destroyOnHit = val;
     }
 
-    public void SetInitialData(GameManager.AttackBuilder initData) {
-        this.initialData = initData;
+    public void SetAttackData(GameManager.AttackBuilder initData) {
+        this.data = initData;
     }
 }
 
