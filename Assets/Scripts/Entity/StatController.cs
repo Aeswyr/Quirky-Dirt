@@ -10,10 +10,10 @@ public class StatController : NetworkBehaviour
     private int maxHP, maxAR, maxMP, maxFP;
     private int curHP, curAR, curMP, curFP;
     private int curStam, maxStam, lockStam;
-    private int curBarrier;
 
-    private float nextStamina;
-    private float staminaDelay;
+    private float nextStamina, staminaDelay;
+    private float nextArmor, armorDelay;
+    private float nextFocus, focusDelay;
 
     private int luk, // luck
                 res, // resistance
@@ -27,11 +27,10 @@ public class StatController : NetworkBehaviour
         if (team == Team.PLAYER) {
             RecalculateStats();
 
-            curAR = maxAR;
-            curFP = maxFP;
+            curAR = 0;
+            curFP = 0;
             curMP = maxMP;
             curStam = maxStam;
-            curBarrier = 0;
         } else {
             maxHP = 10;
         }
@@ -40,8 +39,8 @@ public class StatController : NetworkBehaviour
 
 
         if (isLocalPlayer) {
-            HUDManager.Instance.UpdateHP(maxHP + maxAR, curHP, curAR, curBarrier);
-            HUDManager.Instance.UpdateMP(maxMP + maxFP, curMP, curFP);
+            HUDManager.Instance.UpdateHP(maxHP, curHP, curAR);
+            HUDManager.Instance.UpdateMP(maxMP, curMP, curFP);
             HUDManager.Instance.UpdateStam(maxStam, curStam, lockStam);
         }
     }
@@ -51,10 +50,16 @@ public class StatController : NetworkBehaviour
             maxMP = 5 + 2 * att;
             maxStam = 3 + phy / 4;
         
-            maxAR = 0;
-            maxFP = 0;
+            maxAR = 3;
+            maxFP = 3;
 
             staminaDelay = 1.5f - 0.1f * phy; // INCREDIBLY TEMPORARY, DO REAL MATH
+
+            armorDelay = 3f;
+            focusDelay = 5f;
+
+            nextArmor = Time.time + armorDelay;
+            nextFocus = Time.time + focusDelay;
     }
 
 
@@ -86,6 +91,18 @@ public class StatController : NetworkBehaviour
             curStam++;
             nextStamina = Time.time + staminaDelay;
             HUDManager.Instance.UpdateStam(maxStam, curStam, lockStam);
+        }
+
+        if (curAR < maxAR && Time.time > nextArmor) {
+            curAR++;
+            nextArmor = Time.time + armorDelay;
+            HUDManager.Instance.UpdateHP(maxHP, curHP, curAR);
+        }
+
+        if (curFP < maxFP && Time.time > nextFocus) {
+            curFP++;
+            nextFocus = Time.time + focusDelay;
+            HUDManager.Instance.UpdateMP(maxMP, curMP, curFP);
         }
     }
 }

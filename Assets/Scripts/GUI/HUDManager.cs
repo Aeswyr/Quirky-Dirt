@@ -3,16 +3,20 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class HUDManager : Singleton<HUDManager>
 {
-    [SerializeField] private RectTransform hpEmpty;
-    [SerializeField] private RectTransform hpBar;
-    [SerializeField] private RectTransform arBar;
-    [SerializeField] private RectTransform barrierBar;
-    [SerializeField] private RectTransform mpEmpty;
-    [SerializeField] private RectTransform mpBar;
-    [SerializeField] private RectTransform fpBar;
+    [SerializeField] private Image hpBar;
+    [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private GameObject armorToken;
+    [SerializeField] private TextMeshProUGUI arText;
+    [SerializeField] private Image mpBar;
+    [SerializeField] private TextMeshProUGUI mpText;
+    [SerializeField] private GameObject focusToken;
+    [SerializeField] private TextMeshProUGUI fpText;
+    
+    
     [SerializeField] private RectTransform staminaBar;
     [SerializeField] private GameObject staminaToken;
     [SerializeField] private Sprite stamEmpty;
@@ -21,16 +25,25 @@ public class HUDManager : Singleton<HUDManager>
     private List<GameObject> staminaTokens = new();
 
     public void UpdateMP(int maxMP, int curMP, int curFP) {
-        mpEmpty.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxMP);
-        mpBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, curMP);
-        fpBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, curFP);
+        mpBar.fillAmount = (float)curMP / maxMP;
+        mpText.text = $"{curMP}/{maxMP}";
+        if (curFP > 0) {
+            focusToken.SetActive(true);
+            fpText.text = $"x{curFP}";
+        } else {
+            focusToken.SetActive(false);
+        }
     }
 
-    public void UpdateHP(int maxHP, int curHP, int curAR, int curBar) {
-        hpEmpty.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, maxHP);
-        hpBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, curHP);
-        arBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, curAR);
-        barrierBar.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, curBar);
+    public void UpdateHP(int maxHP, int curHP, int curAR) {
+        mpBar.fillAmount = (float)curHP / maxHP;
+        hpText.text = $"{curHP}/{maxHP}";
+        if (curAR > 0) {
+            armorToken.SetActive(true);
+            arText.text = $"x{curAR}";
+        } else {
+            armorToken.SetActive(false);
+        }
     }
 
     public void UpdateStam(int maxStam, int currStam, int lockedStam) {

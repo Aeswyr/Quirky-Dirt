@@ -14,6 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackList:
   - animationID: 0
-    data: {fileID: 0}
-  - animationID: 0
-    data: {fileID: 0}
+    isCharged: 0
+    data: {fileID: 11400000, guid: bcb971e46ea0dc94199a1a7c5879244d, type: 2}
+  - animationID: 1
+    isCharged: 0
+    data: {fileID: 11400000, guid: 28bd6d17f9814a441a337938b0dcb2b2, type: 2}
+  - animationID: 2
+    isCharged: 1
+    data: {fileID: 11400000, guid: 78e0d76e156242e4f865db311b7c39dc, type: 2}
+  - animationID: 3
+    isCharged: 0
+    data: {fileID: 11400000, guid: 1b5d7b67b1fc288459e59ffb9103cc4e, type: 2}
