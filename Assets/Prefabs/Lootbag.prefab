@@ -52,6 +52,7 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  items: {fileID: 11400000, guid: bbf502a3579328b4eab27eb07f258d46, type: 2}
 --- !u!114 &5791502911300768212
 MonoBehaviour:
   m_ObjectHideFlags: 0

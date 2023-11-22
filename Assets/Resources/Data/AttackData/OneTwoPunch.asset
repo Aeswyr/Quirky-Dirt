@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d013c34a785779f438606778f564e9d3, type: 3}
-  m_Name: UpSwing
+  m_Name: OneTwoPunch
   m_EditorClassIdentifier: 
-  baseDamage: 3
-  physicalCoeff: 0
+  baseDamage: 1
+  physicalCoeff: 0.15
   magicalCoeff: 0
   damageType: 1

@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d013c34a785779f438606778f564e9d3, type: 3}
-  m_Name: FlashCut
+  m_Name: SwordSwing
   m_EditorClassIdentifier: 
-  baseDamage: 2
-  physicalCoeff: 0.5
+  baseDamage: 4
+  physicalCoeff: 0.65
   magicalCoeff: 0
   damageType: 1

@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d013c34a785779f438606778f564e9d3, type: 3}
-  m_Name: DownSwing
+  m_Script: {fileID: 11500000, guid: 2b08342dd4f72fc4d97f639107eabf70, type: 3}
+  m_Name: ItemDictionary
   m_EditorClassIdentifier: 
-  baseDamage: 3
-  physicalCoeff: 0
-  magicalCoeff: 0
-  damageType: 1
+  itemList:
+  - iconID: 0
+    types: 0100000002000000
+    attackIDs: 0000000001000000
+  - iconID: 1
+    types: 01000000
+    attackIDs: 02000000

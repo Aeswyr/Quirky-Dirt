@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using Cinemachine;
+using Unity.VisualScripting;
 
 public class PlayerController : NetworkBehaviour
 { 
@@ -28,13 +29,12 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private AnimationCurve attackOverrideWeight;
 
     [SerializeField] private AttackDictionary attackDictionary;
-    [SerializeField] private int[] leftCombo;
-    [SerializeField] private int[] rightCombo;
 
     private enum ComboList {
         DEFAULT, LEFT, RIGHT
     }
     private ComboList currentCombo;
+    private int cancelCount;
     private int comboIndex;
     [SyncVar(hook = nameof(SyncFacing))] bool flipX;
 
@@ -67,7 +67,7 @@ public class PlayerController : NetworkBehaviour
         var cam = FindObjectOfType<CinemachineVirtualCamera>();
         cam.Follow = transform;
 
-        InventoryManager.Instance.SetActive(inventoryOpen);
+        CharacterMenuManager.Instance.CloseMenu();
         PauseManager.Instance.SetActive(pauseOpen);
     }
 
@@ -79,14 +79,14 @@ public class PlayerController : NetworkBehaviour
         if (!pauseOpen && InputHandler.Instance.menu.pressed) {
             inventoryOpen = !inventoryOpen;
             locked = inventoryOpen;
-            InventoryManager.Instance.SetActive(inventoryOpen);
+            CharacterMenuManager.Instance.ToggleMenu(inventoryOpen);
         }
 
         if (InputHandler.Instance.pause.pressed) {
             if (inventoryOpen) {
                 inventoryOpen = false;
                 locked = inventoryOpen;
-                InventoryManager.Instance.SetActive(inventoryOpen);
+                CharacterMenuManager.Instance.ToggleMenu(inventoryOpen);
             } else {
                 pauseOpen = !pauseOpen;
                 locked = pauseOpen;
@@ -177,17 +177,25 @@ public class PlayerController : NetworkBehaviour
 
     private bool TryAttack() {
         if ((!acting || cancellable) && GetComboPressed(out ComboList nextCombo)) {
+            stats.SpendStam(0); // prevent stamina regen during combos
+
             if (currentCombo != nextCombo) {
                 comboIndex = 0;
+                
+                if (currentCombo != ComboList.DEFAULT) {
+                    cancelCount++;
+                    if (cancelCount % 2 == 0)
+                        stats.SpendStam(1);
+                }
             } else {
                 comboIndex++;
             }
 
             currentCombo = nextCombo;
 
-            int[] comboList = leftCombo;
+            int[] comboList = ComboBuilderManager.Instance.GetLeftCombo();
             if (currentCombo == ComboList.RIGHT)
-                comboList = rightCombo;
+                comboList = ComboBuilderManager.Instance.GetRightCombo();
 
             attackID = comboList[comboIndex];
             AttackData attack = attackDictionary.GetAttack(attackID);
@@ -198,13 +206,20 @@ public class PlayerController : NetworkBehaviour
                 animator.SetInteger("attackID", attack.AnimationID);
                 animator.SetTrigger("attack");
 
-                lastDir = mouseDir;
+                switch (attackID) {
+                    case 5:
+                        lastDir = InputHandler.Instance.dir;
+                        UpdateFacing();
+                        break;
+                    default:
+                        lastDir = mouseDir;
+                        UpdateFacing(true);
+                        break;
+                }
 
                 activeCurve = attackCurve;
                 controlOverrideWeight = attackOverrideWeight;
                 curveStartTime = Time.time;
-
-                UpdateFacing(true);
 
                 return true;
             } else {
@@ -260,6 +275,7 @@ public class PlayerController : NetworkBehaviour
     public void FromAction() {
         if (!isLocalPlayer)
             return;
+            
         activeCurve = null;
         controlOverrideWeight = null;
         acting = false;
@@ -269,6 +285,8 @@ public class PlayerController : NetworkBehaviour
         
         attackID = -1;
         currentCombo = ComboList.DEFAULT;
+
+        cancelCount = 0;
     }
 
     public void SetCancellable() {
@@ -276,8 +294,8 @@ public class PlayerController : NetworkBehaviour
             return;
 
 
-        if ((currentCombo == ComboList.LEFT && comboIndex + 1 < leftCombo.Length) 
-            || (currentCombo == ComboList.RIGHT && comboIndex + 1 < rightCombo.Length)) {
+        if ((currentCombo == ComboList.LEFT && comboIndex + 1 < ComboBuilderManager.Instance.GetLeftCombo().Length) 
+            || (currentCombo == ComboList.RIGHT && comboIndex + 1 < ComboBuilderManager.Instance.GetRightCombo().Length)) {
             cancellable = true;
             rollCancellable = true;
         }
@@ -328,6 +346,15 @@ public class PlayerController : NetworkBehaviour
                     .SetHitboxSize(new Vector2(3.5f, 1))
                     .SetHitboxOffset(new Vector2(0, 0.0625f))
                     .SetPosition(transform.position + 0.5f * Vector3.up + rotation * (2.75f * Vector2.right))
+                    .SetRotation(rotation)
+                    .Finish();
+                break;
+            case 4:
+                attack
+                    .SetType(AttackType.IMPACT)
+                    .SetHitboxSize(new Vector2(1f, 0.5f))
+                    .SetHitboxOffset(new Vector2(0, 0.0625f))
+                    .SetPosition(transform.position + 0.5f * Vector3.up + rotation * new Vector2(1f, Random.Range(-0.6f, 0.6f)))
                     .SetRotation(rotation)
                     .Finish();
                 break;

@@ -1,11 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using System;
 
-public struct Item
+[Serializable] public struct Item
 {
     public int iconID;
     public ItemType[] types;
+    public int[] attackIDs;
 
 }
 

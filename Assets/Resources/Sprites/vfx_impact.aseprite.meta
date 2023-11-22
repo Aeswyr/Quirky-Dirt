@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: be92a94ee5e62eb43a286c9f45de0391
+guid: cb9f0ad99b70a39468be9f56971984bf
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -74,10 +74,10 @@ ScriptedImporter:
     fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 1
-    defaultPivotAlignment: 7
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
-    spritePadding: 0
+    spritePadding: 2
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
@@ -86,16 +86,16 @@ ScriptedImporter:
     fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 1
-    defaultPivotAlignment: 7
+    defaultPivotSpace: 0
+    defaultPivotAlignment: 0
     customPivotPosition: {x: 0.5, y: 0.5}
-    spritePadding: 0
+    spritePadding: 2
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638353565654669025
+  platformSettingsDirtyTick: 638361174513207734
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,18 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: ui_holder
+  - name: vfx_impact_Frame_0
     originalName: 
-    pivot: {x: 0.5, y: 0.5}
-    alignment: 7
+    pivot: {x: 0.6, y: 0.44444445}
+    alignment: 9
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 290
-      height: 16
-    spriteID: dada69c0ba3a083448cb446f7b3ca127
+      width: 20
+      height: 9
+    spriteID: 07d482d67a08e754faae42dd823ed7cb
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -139,23 +139,79 @@ ScriptedImporter:
     edges: []
     tessellationDetail: 0
     uvTransform: {x: 4, y: 4}
+  - name: vfx_impact_Frame_1
+    originalName: 
+    pivot: {x: -0.08333337, y: 0.44444445}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 21
+      width: 12
+      height: 9
+    spriteID: a2a32e21fccfcee4b8982fe2086e7363
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 21}
+  - name: vfx_impact_Frame_2
+    originalName: 
+    pivot: {x: -1.0000001, y: 0.44444445}
+    alignment: 9
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 38
+      width: 7
+      height: 9
+    spriteID: da2963cec0ab0c046bf878f7301615b9
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 38}
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 1410791787
-    name: ui_holder
+    guid: 927449153
+    name: vfx_impact
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: ui_holder
+    - name: vfx_impact_Frame_0
       frameIndex: 0
       cellRect:
-        x: 25
-        y: 0
-        width: 290
-        height: 16
-      spriteId: dada69c0ba3a083448cb446f7b3ca127
+        x: 0
+        y: 4
+        width: 18
+        height: 7
+      spriteId: 07d482d67a08e754faae42dd823ed7cb
+    - name: vfx_impact_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 13
+        y: 4
+        width: 10
+        height: 7
+      spriteId: a2a32e21fccfcee4b8982fe2086e7363
+    - name: vfx_impact_Frame_2
+      frameIndex: 2
+      cellRect:
+        x: 19
+        y: 4
+        width: 5
+        height: 7
+      spriteId: da2963cec0ab0c046bf878f7301615b9
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -197,4 +253,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 320, y: 16}
+  canvasSize: {x: 24, y: 16}

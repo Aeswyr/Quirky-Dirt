@@ -71,6 +71,16 @@ public class InventoryManager : Singleton<InventoryManager>
         return items[index].GetValueOrDefault();
     }
 
+    public List<Item> GetEquipment() {
+        List<Item> equipment = new();
+
+        for (int i = inventorySize; i < items.Length; i++)
+            if (items[i].HasValue)
+                equipment.Add(items[i].Value);
+        
+        return equipment;
+    }
+
     void FixedUpdate() {
         if (!inventoryParent.activeInHierarchy)
             return;

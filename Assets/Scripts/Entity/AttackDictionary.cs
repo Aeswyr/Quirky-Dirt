@@ -11,6 +11,13 @@ public class AttackDictionary : ScriptableObject {
 }
 
 [Serializable] public struct AttackData {
+
+    [SerializeField] private string name;
+    public string Name {
+        get {return name;}
+        private set {name = value;}
+    }
+
     [SerializeField] private int animationID;
     public int AnimationID {
         get {return animationID;}

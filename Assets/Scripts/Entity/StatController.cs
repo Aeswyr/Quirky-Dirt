@@ -69,7 +69,7 @@ public class StatController : NetworkBehaviour
         if ((gameObject.TryGetComponent(out player) || source.TryGetComponent(out player)) && !player.isLocalPlayer)
             return false;
         
-        VFXManager.Instance.CreateFloatingText($"{data.GetDamage(0, 0)}", Color.red, transform.position + 1.5f * Vector3.up);
+        VFXManager.Instance.CreateFloatingText($"{data.GetDamage(0, 0)}", Color.red, transform.position + new Vector3(Random.Range(-0.25f, 0.25f), 1.5f, 0));
 
         return true;
     }
@@ -82,6 +82,8 @@ public class StatController : NetworkBehaviour
 
     public void SpendStam(int amt) {
         curStam -= amt;
+        if (curStam < 0)
+            curStam = 0;
         nextStamina = Time.time + staminaDelay;
         HUDManager.Instance.UpdateStam(maxStam, curStam, lockStam);
     }

@@ -5,15 +5,10 @@ using Mirror;
 
 public class PickupController : NetworkBehaviour
 {
+    [SerializeField] private ItemDictionary items;
     public void OnPickup(PlayerController player) {
-        InventoryManager.Instance.AddItem(new Item {
-            iconID = 0,
-            types = new []{ItemType.MAINHAND, ItemType.OFFHAND}
-        });
-        InventoryManager.Instance.AddItem(new Item {
-            iconID = 1,
-            types = new []{ItemType.MAINHAND}
-        });
+        InventoryManager.Instance.AddItem(items.GetItem(0));
+        InventoryManager.Instance.AddItem(items.GetItem(1));
 
         CleanupDrop();
     }
