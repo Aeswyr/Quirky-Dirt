@@ -13,9 +13,15 @@ MonoBehaviour:
   m_Name: ItemDictionary
   m_EditorClassIdentifier: 
   itemList:
-  - iconID: 0
+  - name: Straight Sword
+    iconID: 0
     types: 0100000002000000
     attackIDs: 0000000001000000
-  - iconID: 1
+  - name: Bow
+    iconID: 1
     types: 01000000
     attackIDs: 02000000
+  - name: Quick-Draw Sword
+    iconID: 2
+    types: 0100000002000000
+    attackIDs: 000000000100000003000000

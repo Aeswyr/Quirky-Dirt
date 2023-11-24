@@ -9,6 +9,7 @@ public class PickupController : NetworkBehaviour
     public void OnPickup(PlayerController player) {
         InventoryManager.Instance.AddItem(items.GetItem(0));
         InventoryManager.Instance.AddItem(items.GetItem(1));
+        InventoryManager.Instance.AddItem(items.GetItem(2));
 
         CleanupDrop();
     }
