@@ -7,7 +7,37 @@ public class GameManager : NetworkSingleton<GameManager>
 {
     [SerializeField] private GameObject attackPrefab;
     [SerializeField] private AnimationClip[] attacks;
+    [SerializeField] private GameObject[] enemyPrefabs;
+
     // Start is called before the first frame update
+    void Start() {
+        if (!isServer)
+            return;
+
+        foreach (var enemy in enemyPrefabs)
+            NetworkClient.RegisterPrefab(enemy);
+        
+    }
+
+    int tick = 0;
+    void FixedUpdate() {
+        if (!isServer)
+            return;
+
+        if (tick == 60)
+            SpawnEnemy(EnemyType.RAT, Vector3.zero);
+
+        tick++;
+    }
+
+    public void SpawnEnemy(EnemyType type, Vector3 position) {
+        NetworkServer.Spawn(Instantiate(enemyPrefabs[(int)type], position, Quaternion.identity));
+    }
+
+    public enum EnemyType {
+        DEFAULT, RAT
+    }
+
 
     Dictionary<uint, GameObject> syncedEntities = new();
 

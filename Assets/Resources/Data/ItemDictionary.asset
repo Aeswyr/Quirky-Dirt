@@ -24,4 +24,4 @@ MonoBehaviour:
   - name: Quick-Draw Sword
     iconID: 2
     types: 0100000002000000
-    attackIDs: 000000000100000003000000
+    attackIDs: 0100000003000000

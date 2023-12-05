@@ -170,7 +170,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2874228320986155300}
-  - component: {fileID: 2788052525064322354}
+  - component: {fileID: 7454574712836107710}
   - component: {fileID: 3302140963346576651}
   - component: {fileID: 1442711037819117156}
   - component: {fileID: -1664191371943623284}
@@ -207,7 +207,7 @@ Transform:
   - {fileID: 5843294632455883207}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2788052525064322354
+--- !u!114 &7454574712836107710
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,7 +216,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4557000949727453514}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2164290204ff034cbc74ab4745545d1, type: 3}
+  m_Script: {fileID: 11500000, guid: c6a123e51cb1d284d94e082620c35cf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
@@ -241,7 +241,7 @@ MonoBehaviour:
   rbody: {fileID: 6107151790691504295}
   sprite: {fileID: -1664191371943623284}
   animator: {fileID: 2802490445067313589}
-  stats: {fileID: 2788052525064322354}
+  stats: {fileID: 7454574712836107710}
   pickupBox: {fileID: 6025211876279170792}
   baseSpeed: 7
   rollCurve:
@@ -399,8 +399,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   attackDictionary: {fileID: 11400000, guid: b1b18f3860411d84a876c6b40f84c269, type: 2}
-  leftCombo: 040000000400000004000000
-  rightCombo: 050000000200000002000000
 --- !u!114 &1442711037819117156
 MonoBehaviour:
   m_ObjectHideFlags: 0

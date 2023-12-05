@@ -55,6 +55,9 @@ MonoBehaviour:
   - {fileID: -3708870206239030311, guid: 8089e82ce5e92d14d9c69474da1de784, type: 3}
   - {fileID: -1775248216720910525, guid: 8125cd2360c779948ab5d8865728fb40, type: 3}
   - {fileID: 8802328557853414223, guid: cb9f0ad99b70a39468be9f56971984bf, type: 3}
+  enemyPrefabs:
+  - {fileID: 1791571732925420522, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
+  - {fileID: 2777506581467907477, guid: ed88eb737c50511468f6117df03fc4ec, type: 3}
 --- !u!114 &5745636113124701095
 MonoBehaviour:
   m_ObjectHideFlags: 0

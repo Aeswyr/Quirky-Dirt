@@ -11,7 +11,7 @@ public class PlayerController : NetworkBehaviour
     [SerializeField] private Rigidbody2D rbody;
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private Animator animator;
-    [SerializeField] private StatController stats;
+    [SerializeField] private PlayerStatController stats;
     [SerializeField] private BoxCollider2D pickupBox;
     
 
