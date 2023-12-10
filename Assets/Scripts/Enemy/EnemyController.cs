@@ -10,7 +10,9 @@ public class EnemyController : NetworkBehaviour
     [SerializeField] private SpriteRenderer sprite;
     [SerializeField] private float baseSpeed;
     [SerializeField] private float searchDistance;
+    [SerializeField] private AnimationCurve knockbackCurve;
     [SerializeField] private List<EnemyState> validStates;
+    
     public Dictionary<Transform, float> aggroList = new();
 
     private EnemyState behaviorState;
@@ -18,6 +20,11 @@ public class EnemyController : NetworkBehaviour
     private Transform target;
     private Vector3 targetPosition;
     private Vector3 home;
+
+    private float knockbackTime = -1;
+    private float knockbackDuration = 0;
+    private bool isKnockback;
+    private Vector2 knockbackVector;
 
     private int facing = 1;
 
@@ -58,6 +65,17 @@ public class EnemyController : NetworkBehaviour
     void FixedUpdate() {
         if (!isServer)
             return;
+
+        if (Time.time < knockbackTime + knockbackDuration) {
+            animator.SetBool("hit", true);
+            animator.SetBool("move", false);
+            rbody.velocity = knockbackCurve.Evaluate(Time.time - knockbackTime) * knockbackVector;
+            return;
+        } else if (isKnockback) {
+            animator.SetBool("hit", false);
+            rbody.velocity = Vector2.zero;
+            isKnockback = false;
+        }
         
         target = FindTarget();
 
@@ -186,5 +204,29 @@ public class EnemyController : NetworkBehaviour
             aggroList[transform] += aggro;
         else
             aggroList.Add(transform, aggro);
+    }
+
+    [Command(requiresAuthority = false)] public void DoKnockback(HitData.KnockbackStrength strength, Vector2 dir) {
+        knockbackTime = Time.time;
+        isKnockback = true;
+        switch (strength) {
+                case HitData.KnockbackStrength.SMALL:
+                    knockbackDuration = 0.2f;
+                    knockbackVector = 2 * dir;
+                    break;
+                case HitData.KnockbackStrength.MEDIUM:
+                    knockbackDuration = 0.35f;
+                    knockbackVector = 4 * dir;
+                    break;
+                case HitData.KnockbackStrength.LARGE:
+                    knockbackDuration = 0.5f;
+                    knockbackVector = 8 * dir;
+                    break;
+                case HitData.KnockbackStrength.MASSIVE:
+                    knockbackDuration = 0.5f;
+                    knockbackVector = 16 * dir;
+                    break;
+            }
+        
     }
 }

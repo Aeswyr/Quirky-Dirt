@@ -52,7 +52,7 @@ public class HitboxController : NetworkBehaviour
         if (other.transform.parent.gameObject != owner && other.transform.parent.TryGetComponent(out StatController stats) && stats.GetTeam() != data.team && !hitTargets.Contains(stats)) {
             VFXManager.Instance.CreateVFX(VFXType.VFX_HIT, 0.5f * (transform.position + other.transform.position), Quaternion.identity);
             hitTargets.Add(stats);
-            if (stats.OnHit(attackDictionary.GetAttack(data.attackID).Data, owner.GetComponent<StatController>()) && destroyOnHit) {
+            if (stats.OnHit(attackDictionary.GetAttack(data.attackID).Data, owner.GetComponent<StatController>(), transform) && destroyOnHit) {
                 NetworkServer.Destroy(gameObject);
             }
         }

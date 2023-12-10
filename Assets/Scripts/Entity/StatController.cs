@@ -12,10 +12,10 @@ public abstract class StatController : NetworkBehaviour
     
 
 
-    public bool OnHit(HitData data, StatController source) {
+    public virtual bool OnHit(HitData data, StatController sourceEntity, Transform source) {
         PlayerController player;
 
-        if ((gameObject.TryGetComponent(out player) || source.TryGetComponent(out player)) && !player.isLocalPlayer)
+        if ((gameObject.TryGetComponent(out player) || sourceEntity.TryGetComponent(out player)) && !player.isLocalPlayer)
             return false;
 
         int dmg = data.GetDamage(atk, matk);
@@ -25,6 +25,8 @@ public abstract class StatController : NetworkBehaviour
         if (gameObject.TryGetComponent(out EnemyController enemy))
             enemy.AddAggro(player, dmg);
 
+        RegisterHit(data, sourceEntity, source);
+
         if (curHP <= 0)
             OnDeath();
 
@@ -32,6 +34,8 @@ public abstract class StatController : NetworkBehaviour
     }
 
     public abstract void OnDeath();
+
+    public abstract void RegisterHit(HitData data, StatController sourceEntity, Transform source);
 
     public Team GetTeam() {return team;}
 }

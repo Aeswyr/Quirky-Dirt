@@ -88,18 +88,22 @@ public class PlayerStatController : StatController
         }
     }
 
-    new public bool OnHit(HitData data, StatController source) {
+    public override bool OnHit(HitData data, StatController sourceEntity, Transform source) {
         bool result = true;
         if (curAR > 0) {
             curAR = Mathf.Max(0, curAR - data.GetDamage(atk, matk));
         } else {
-            result = base.OnHit(data, source);
+            result = base.OnHit(data, sourceEntity, source);
         }
         HUDManager.Instance.UpdateHP(maxHP, curHP, curAR);
         return result;
     }
 
     public override void OnDeath() {
+
+    }
+
+    public override void RegisterHit(HitData data, StatController sourceEntity, Transform source) {
 
     }
 }
