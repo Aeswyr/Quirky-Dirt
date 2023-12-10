@@ -17,10 +17,13 @@ public abstract class StatController : NetworkBehaviour
 
         if ((gameObject.TryGetComponent(out player) || source.TryGetComponent(out player)) && !player.isLocalPlayer)
             return false;
-        
-        VFXManager.Instance.CreateFloatingText($"{data.GetDamage(0, 0)}", Color.red, transform.position + new Vector3(Random.Range(-0.25f, 0.25f), 1.5f, 0));
 
-        curHP -= data.GetDamage(atk, matk);
+        int dmg = data.GetDamage(atk, matk);
+        VFXManager.Instance.CreateFloatingText($"{dmg}", Color.red, transform.position + new Vector3(Random.Range(-0.25f, 0.25f), 1.5f, 0));
+
+        curHP -= dmg;
+        if (gameObject.TryGetComponent(out EnemyController enemy))
+            enemy.AddAggro(player, dmg);
 
         if (curHP <= 0)
             OnDeath();

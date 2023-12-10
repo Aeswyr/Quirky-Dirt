@@ -10,13 +10,9 @@ public class GameManager : NetworkSingleton<GameManager>
     [SerializeField] private GameObject[] enemyPrefabs;
 
     // Start is called before the first frame update
-    void Start() {
-        if (!isServer)
-            return;
-
+    void Awake() {
         foreach (var enemy in enemyPrefabs)
             NetworkClient.RegisterPrefab(enemy);
-        
     }
 
     int tick = 0;
@@ -24,8 +20,8 @@ public class GameManager : NetworkSingleton<GameManager>
         if (!isServer)
             return;
 
-        if (tick == 60)
-            SpawnEnemy(EnemyType.RAT, Vector3.zero);
+        if (tick % 300 == 0)
+            SpawnEnemy(EnemyType.RAT, new Vector3(Random.Range(-10, 10), Random.Range(-10, 10), 0));
 
         tick++;
     }

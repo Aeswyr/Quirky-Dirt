@@ -127,10 +127,30 @@ ScriptedImporter:
     rect:
       serializedVersion: 2
       x: 4
-      y: 4
+      y: 43
       width: 26
       height: 27
     spriteID: b56f6d87b4b9cfe4fb4b42a31ee60243
+    spriteBone: []
+    spriteOutline: []
+    vertices: []
+    spritePhysicsOutline: []
+    indices: 
+    edges: []
+    tessellationDetail: 0
+    uvTransform: {x: 4, y: 43}
+  - name: enemy_test_Frame_1
+    originalName: 
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
+    border: {x: 0, y: 0, z: 0, w: 0}
+    rect:
+      serializedVersion: 2
+      x: 4
+      y: 4
+      width: 26
+      height: 31
+    spriteID: a770b8a6aa6e9aa48b94ca11147b630f
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -148,7 +168,7 @@ ScriptedImporter:
     layerType: 0
     blendMode: 0
     cells:
-    - name: enemy_test
+    - name: enemy_test_Frame_0
       frameIndex: 0
       cellRect:
         x: 3
@@ -156,6 +176,14 @@ ScriptedImporter:
         width: 24
         height: 25
       spriteId: b56f6d87b4b9cfe4fb4b42a31ee60243
+    - name: enemy_test_Frame_1
+      frameIndex: 1
+      cellRect:
+        x: 0
+        y: 1
+        width: 24
+        height: 29
+      spriteId: a770b8a6aa6e9aa48b94ca11147b630f
     linkedCells: []
     parentIndex: -1
   platformSettings:

@@ -12,6 +12,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Rat
       objectReference: {fileID: 0}
+    - target: {fileID: 2061455856945753007, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
+      propertyPath: searchDistance
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061455856945753007, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
+      propertyPath: validStates.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061455856945753007, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
+      propertyPath: validStates.Array.data[1]
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2061455856945753007, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
+      propertyPath: validStates.Array.data[2]
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5157198688624949047, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -20,6 +36,10 @@ PrefabInstance:
       propertyPath: _assetId
       value: 759783099
       objectReference: {fileID: 0}
+    - target: {fileID: 8586229425238690588, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 019f012c95adbfe449994f327f41abb2, type: 2}
     - target: {fileID: 8817785135782997882, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

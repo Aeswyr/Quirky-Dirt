@@ -74,6 +74,10 @@ public class ItemSlotController : MonoBehaviour, IPointerDownHandler, IPointerUp
         if (target.type != ItemType.NONE && !item.types.Contains(target.type))
             return;
 
+        if (InventoryManager.Instance.HasItemAtIndex(target.index) && type != ItemType.NONE 
+            && !InventoryManager.Instance.GetItemAtIndex(target.index).types.Contains(type))
+            return;
+
         InventoryManager.Instance.RemoveItem(index);
         if (InventoryManager.Instance.HasItemAtIndex(target.index)) {
             Item swap = InventoryManager.Instance.RemoveItem(target.index);

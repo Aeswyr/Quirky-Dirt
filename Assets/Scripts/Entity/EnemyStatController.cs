@@ -13,6 +13,9 @@ public class EnemyStatController : StatController
     }
 
     public override void OnDeath() {
-        NetworkServer.Destroy(gameObject);
+        Cleanup();
+        [Command(requiresAuthority = false)] void Cleanup() {
+            NetworkServer.Destroy(gameObject);
+        }
     }
 }
