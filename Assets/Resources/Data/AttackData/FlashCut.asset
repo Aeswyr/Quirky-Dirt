@@ -16,3 +16,5 @@ MonoBehaviour:
   physicalCoeff: 0.5
   magicalCoeff: 0
   damageType: 1
+  knockbackStrength: 2
+  knockbackRelative: 0

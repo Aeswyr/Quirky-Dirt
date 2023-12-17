@@ -32,18 +32,7 @@ public class ComboBuilderManager : Singleton<ComboBuilderManager>
     public void SetActive(bool toggle) {
         comboMenuParent.SetActive(toggle);
         if (toggle) {
-            validCombos.Clear();
-
-            // add basic unarmed
-            validCombos.Add(4);
-            validCombos.Add(5);
-
-            // add equipment combos
-            foreach (var item in InventoryManager.Instance.GetEquipment())
-                if (item.attackIDs != null)
-                    foreach (var id in item.attackIDs)
-                        if (!validCombos.Contains(id))
-                            validCombos.Add(id);
+            GenerateComboList();
             
             for (int i = 0; i < comboListParent.childCount; i++)
                 Destroy(comboListParent.GetChild(i).gameObject);
@@ -53,6 +42,21 @@ public class ComboBuilderManager : Singleton<ComboBuilderManager>
             }
 
         }
+    }
+
+    public void GenerateComboList() {
+        validCombos.Clear();
+
+        // add basic unarmed
+        validCombos.Add(4);
+        validCombos.Add(5);
+
+        // add equipment combos
+        foreach (var item in InventoryManager.Instance.GetEquipment())
+            if (item.attackIDs != null)
+                foreach (var id in item.attackIDs)
+                    if (!validCombos.Contains(id))
+                        validCombos.Add(id);
     }
 
     public void RefreshCombos() {
@@ -67,12 +71,26 @@ public class ComboBuilderManager : Singleton<ComboBuilderManager>
 
         combo.Clear();
         foreach(var slot in rightSlots)
-            if (slot.GetID() != -1)
+            if (slot.GetID() != -1 && validCombos.Contains(slot.GetID()))
                 combo.Add(slot.GetID());
         if (combo.Count > 0)
             rightCombo = combo.ToArray();
         else
             rightCombo = new int[] {5};
+    }
+
+    public void EquipmentChanged() {
+        GenerateComboList();
+
+        foreach (var slot in leftSlots)
+            if (slot.GetID() != -1 && !validCombos.Contains(slot.GetID()))
+                slot.SetAttack(-1);
+
+        foreach (var slot in rightSlots)
+            if (slot.GetID() != -1 && !validCombos.Contains(slot.GetID()))
+                slot.SetAttack(-1);
+
+        RefreshCombos();
     }
 
     public int[] GetLeftCombo() {

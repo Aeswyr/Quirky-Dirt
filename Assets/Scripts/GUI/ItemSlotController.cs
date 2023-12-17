@@ -10,6 +10,7 @@ public class ItemSlotController : MonoBehaviour, IPointerDownHandler, IPointerUp
     [SerializeField] private Sprite emptySprite;
     [SerializeField] private Image image;
     [SerializeField] private ItemType type;
+    [SerializeField] private bool isEquipment;
     public int index;
     // Start is called before the first frame update
     void Awake()
@@ -85,5 +86,8 @@ public class ItemSlotController : MonoBehaviour, IPointerDownHandler, IPointerUp
         }
 
         InventoryManager.Instance.AddItem(item, target.index);
+
+        if (isEquipment || target.isEquipment)
+            ComboBuilderManager.Instance.EquipmentChanged();
     }
 }

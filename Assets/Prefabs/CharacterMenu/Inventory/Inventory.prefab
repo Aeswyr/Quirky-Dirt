@@ -397,6 +397,10 @@ PrefabInstance:
       propertyPath: emptySprite
       value: 
       objectReference: {fileID: 6106291143614189221, guid: 93729f356105d6546bb30ac2728459c1, type: 3}
+    - target: {fileID: 7083437342547313756, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
+      propertyPath: isEquipment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9206523508867162288, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -518,6 +522,10 @@ PrefabInstance:
       propertyPath: emptySprite
       value: 
       objectReference: {fileID: -5277966928251357789, guid: 03611fac981f8744a8d70335b9f2a975, type: 3}
+    - target: {fileID: 7083437342547313756, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
+      propertyPath: isEquipment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9206523508867162288, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -639,6 +647,10 @@ PrefabInstance:
       propertyPath: emptySprite
       value: 
       objectReference: {fileID: 7236694896194908318, guid: 2dc90dad07b1ca64f99279bc3f5a4aa1, type: 3}
+    - target: {fileID: 7083437342547313756, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
+      propertyPath: isEquipment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9206523508867162288, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -760,6 +772,10 @@ PrefabInstance:
       propertyPath: emptySprite
       value: 
       objectReference: {fileID: -4457463891004133246, guid: 5737cb93e77082941aa7250cb98d78ac, type: 3}
+    - target: {fileID: 7083437342547313756, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
+      propertyPath: isEquipment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9206523508867162288, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -881,6 +897,10 @@ PrefabInstance:
       propertyPath: emptySprite
       value: 
       objectReference: {fileID: 4602761218896202535, guid: 99c695740ec9f9547becf95d245bfab4, type: 3}
+    - target: {fileID: 7083437342547313756, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
+      propertyPath: isEquipment
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9206523508867162288, guid: 0c74f314a3fe2ce4eb651f13b2db65ba, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

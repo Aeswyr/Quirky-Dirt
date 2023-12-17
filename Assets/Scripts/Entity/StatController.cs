@@ -6,6 +6,11 @@ using UnityEngine;
 public abstract class StatController : NetworkBehaviour
 {
     [SerializeField] private Team team;
+    [SerializeField] private InvulnState invuln;
+
+    protected enum InvulnState {
+        NONE, INTANGIBLE, IMPERVIOUS
+    }
 
     protected int maxHP, curHP;
     protected int matk, atk;
@@ -18,10 +23,15 @@ public abstract class StatController : NetworkBehaviour
         if ((gameObject.TryGetComponent(out player) || sourceEntity.TryGetComponent(out player)) && !player.isLocalPlayer)
             return false;
 
+        if (invuln == InvulnState.INTANGIBLE)
+            return false;
+
         int dmg = data.GetDamage(atk, matk);
         VFXManager.Instance.CreateFloatingText($"{dmg}", Color.red, transform.position + new Vector3(Random.Range(-0.25f, 0.25f), 1.5f, 0));
 
-        curHP -= dmg;
+        if (invuln != InvulnState.IMPERVIOUS)
+            curHP -= dmg;
+        
         if (gameObject.TryGetComponent(out EnemyController enemy))
             enemy.AddAggro(player, dmg);
 
