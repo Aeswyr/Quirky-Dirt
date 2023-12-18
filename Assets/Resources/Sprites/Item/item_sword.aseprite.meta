@@ -77,7 +77,7 @@ ScriptedImporter:
     defaultPivotSpace: 1
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
-    spritePadding: 2
+    spritePadding: 4
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
@@ -89,13 +89,13 @@ ScriptedImporter:
     defaultPivotSpace: 1
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
-    spritePadding: 2
+    spritePadding: 4
     generateModelPrefab: 1
     generateAnimationClips: 1
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638325335094276994
+  platformSettingsDirtyTick: 638384219449628956
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -128,8 +128,8 @@ ScriptedImporter:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 22
-      height: 20
+      width: 24
+      height: 21
     spriteID: baeaf6145455ea546870446d9f126aea
     spriteBone: []
     spriteOutline: []
@@ -154,7 +154,7 @@ ScriptedImporter:
         x: 0
         y: 0
         width: 20
-        height: 18
+        height: 17
       spriteId: baeaf6145455ea546870446d9f126aea
     linkedCells: []
     parentIndex: -1

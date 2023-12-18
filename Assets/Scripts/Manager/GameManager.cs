@@ -8,6 +8,7 @@ public class GameManager : NetworkSingleton<GameManager>
     [SerializeField] private GameObject attackPrefab;
     [SerializeField] private AnimationClip[] attacks;
     [SerializeField] private GameObject[] enemyPrefabs;
+    [SerializeField] private GameObject dropPrefab;
 
     // Start is called before the first frame update
     void Awake() {
@@ -28,6 +29,13 @@ public class GameManager : NetworkSingleton<GameManager>
 
     public void SpawnEnemy(EnemyType type, Vector3 position) {
         NetworkServer.Spawn(Instantiate(enemyPrefabs[(int)type], position, Quaternion.identity));
+    }
+
+    [Server] public void CreateDrop(int[] drops, Vector3 pos) {
+        var drop = Instantiate(dropPrefab, pos, Quaternion.identity);
+        NetworkServer.Spawn(drop);
+
+        drop.GetComponent<PickupController>().SetLoot(drops);
     }
 
     public enum EnemyType {

@@ -28,12 +28,14 @@ public class ItemSlotController : MonoBehaviour, IPointerDownHandler, IPointerUp
         else {
             image.color = Color.white;
             image.sprite = emptySprite;
+            image.SetNativeSize();
         }
     }
 
     public void FillSlot(Sprite icon) {
         image.color = Color.white;
         image.sprite = icon;
+        image.SetNativeSize();
     }
 
     public void OnPointerDown(PointerEventData data) {

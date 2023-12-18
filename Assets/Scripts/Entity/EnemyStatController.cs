@@ -13,10 +13,30 @@ public class EnemyStatController : StatController
     }
 
     public override void OnDeath() {
+        CreateDrops();
         Cleanup();
         [Command(requiresAuthority = false)] void Cleanup() {
             NetworkServer.Destroy(gameObject);
         }
+    }
+
+    [Command(requiresAuthority = false)] private void CreateDrops() {
+        int[] pickups = null;
+
+        switch (Random.Range(0, 3))
+        {
+            case 0:
+                pickups = new[]{0};
+                break;
+            case 1:
+                pickups = new[]{0, 1};
+                break;
+            case 2:
+                pickups = new[]{0, 1, 2};
+                break;
+        }
+
+        GameManager.Instance.CreateDrop(pickups, transform.position);
     }
 
     public override void RegisterHit(HitData data, StatController sourceEntity, Transform source) {

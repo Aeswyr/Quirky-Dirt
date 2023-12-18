@@ -58,6 +58,7 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 1791571732925420522, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
   - {fileID: 2777506581467907477, guid: ed88eb737c50511468f6117df03fc4ec, type: 3}
+  dropPrefab: {fileID: 6560101436552730182, guid: 24fde0ffa380bbf47a2811c2f1aa901d, type: 3}
 --- !u!114 &5745636113124701095
 MonoBehaviour:
   m_ObjectHideFlags: 0
