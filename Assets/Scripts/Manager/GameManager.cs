@@ -66,6 +66,15 @@ public class GameManager : NetworkSingleton<GameManager>
         NetworkServer.Spawn(attack);
     }
 
+    private void CreateAttackLocal(AttackBuilder data) {
+        GameObject attack = Instantiate(attackPrefab, data.position, data.rotation);
+
+        attack.GetComponent<HitboxController>().SetAttackData(data);
+
+        if (data.enableWallCollisions)
+            attack.transform.GetChild(0).gameObject.SetActive(true);
+    }
+
     public AnimationClip GetAttackClip(AttackType type) {
         return attacks[(int)type];
     }
@@ -92,6 +101,7 @@ public class GameManager : NetworkSingleton<GameManager>
         public float lifetime;
         public bool destoryOnHit;
         public bool enableWallCollisions;
+        public bool isPrespawned;
 
         public AttackBuilder SetVelocity(Vector2 dir, float mag) {
             this.velocity = mag * dir;
@@ -133,6 +143,12 @@ public class GameManager : NetworkSingleton<GameManager>
             return this;
         }
         public void Finish() {
+            Instance.CreateAttack(this);
+        }
+
+        public void FinishClientPriority() {
+            Instance.CreateAttackLocal(this);
+            isPrespawned = true;
             Instance.CreateAttack(this);
         }
 

@@ -39,6 +39,9 @@ public class HitboxController : NetworkBehaviour
         this.destroyOnHit = data.destoryOnHit;
 
         this.owner = GameManager.Instance.GetRegisteredEntity(data.ownerID);
+
+        if (data.isPrespawned)
+            gameObject.SetActive(false);
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
@@ -47,19 +50,22 @@ public class HitboxController : NetworkBehaviour
     }
 
     IEnumerator OnHit(Collider2D other) {
+        if (data.isPrespawned)
+            yield break;
+        
         yield return new WaitUntil(() => owner != null);
 
         if (other.transform.parent.gameObject != owner && other.transform.parent.TryGetComponent(out StatController stats) && stats.GetTeam() != data.team && !hitTargets.Contains(stats)) {
             VFXManager.Instance.CreateVFX(VFXType.VFX_HIT, 0.5f * (transform.position + other.transform.position), Quaternion.identity);
             hitTargets.Add(stats);
             if (stats.OnHit(attackDictionary.GetAttack(data.attackID).Data, owner.GetComponent<StatController>(), transform) && destroyOnHit) {
-                NetworkServer.Destroy(gameObject);
+                Cleanup();
             }
         }
     }
 
-    public void SetDestroyOnHit(bool val) {
-        this.destroyOnHit = val;
+    [Command(requiresAuthority = false)] public void Cleanup() {
+        NetworkServer.Destroy(gameObject);
     }
 
     public void SetAttackData(GameManager.AttackBuilder initData) {

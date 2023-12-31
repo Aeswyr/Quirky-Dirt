@@ -325,7 +325,7 @@ public class PlayerController : NetworkBehaviour
                     .SetPosition(transform.position + 0.5f * Vector3.up + rotation * (1.25f * Vector2.right))
                     .SetRotation(rotation)
                     .SetFlip(flip)
-                    .Finish();
+                    .FinishClientPriority();
                 break;
             case 2:
                 VFXManager.Instance.CreateVFX(VFXType.VFX_SHOOT, transform.position + 0.5f * Vector3.up + rotation * (2f * Vector2.right), rotation);
@@ -347,7 +347,7 @@ public class PlayerController : NetworkBehaviour
                     .SetHitboxOffset(new Vector2(0, 0.0625f))
                     .SetPosition(transform.position + 0.5f * Vector3.up + rotation * (2.75f * Vector2.right))
                     .SetRotation(rotation)
-                    .Finish();
+                    .FinishClientPriority();
                 break;
             case 4:
                 attack
@@ -356,7 +356,7 @@ public class PlayerController : NetworkBehaviour
                     .SetHitboxOffset(new Vector2(0, 0.0625f))
                     .SetPosition(transform.position + 0.5f * Vector3.up + rotation * new Vector2(1f, Random.Range(-0.6f, 0.6f)))
                     .SetRotation(rotation)
-                    .Finish();
+                    .FinishClientPriority();
                 break;
         }
     }

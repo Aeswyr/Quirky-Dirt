@@ -223,6 +223,8 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0
   team: 1
+  invuln: 0
+  hpBar: {fileID: 6295541943149115606}
 --- !u!114 &3302140963346576651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,7 +754,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: -1002981337
+  m_SortingLayerID: 1638862171
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &1028509191472556887
@@ -977,6 +979,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d32d0cc1f896f664695884aa9d2a8965, type: 3}
+--- !u!114 &6295541943149115606 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8116745660023575154, guid: d32d0cc1f896f664695884aa9d2a8965, type: 3}
+  m_PrefabInstance: {fileID: 2880679948738079396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8213020492283532317 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6197157292279856825, guid: d32d0cc1f896f664695884aa9d2a8965, type: 3}

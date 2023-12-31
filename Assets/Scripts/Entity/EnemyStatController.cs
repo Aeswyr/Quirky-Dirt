@@ -15,12 +15,12 @@ public class EnemyStatController : StatController
     public override void OnDeath() {
         CreateDrops();
         Cleanup();
-        [Command(requiresAuthority = false)] void Cleanup() {
+        [Server] void Cleanup() {
             NetworkServer.Destroy(gameObject);
         }
     }
 
-    [Command(requiresAuthority = false)] private void CreateDrops() {
+    [Server] private void CreateDrops() {
         int[] pickups = null;
 
         switch (Random.Range(0, 3))
