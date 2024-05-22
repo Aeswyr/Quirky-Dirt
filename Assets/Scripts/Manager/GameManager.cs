@@ -165,5 +165,5 @@ public class GameManager : NetworkSingleton<GameManager>
 }
 
 public enum AttackType {
-    DEFAULT, ARROW, FLASH_CUT, IMPACT
+    DEFAULT, ARROW, FLASH_CUT, IMPACT, THRUST
 }

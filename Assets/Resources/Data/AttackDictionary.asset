@@ -37,3 +37,7 @@ MonoBehaviour:
     animationID: 5
     isCharged: 0
     data: {fileID: 0}
+  - name: Lance
+    animationID: 6
+    isCharged: 0
+    data: {fileID: 11400000, guid: 37a53c860335e574697a28dece13da47, type: 2}

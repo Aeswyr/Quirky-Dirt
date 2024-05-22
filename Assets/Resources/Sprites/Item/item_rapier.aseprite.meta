@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c347c42118c97804398f583e6774c2eb
+guid: 69ad9534ce76fe84595e36ad79da01ef
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -74,7 +74,7 @@ ScriptedImporter:
     fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 0
+    defaultPivotSpace: 1
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 2
@@ -86,7 +86,7 @@ ScriptedImporter:
     fileImportMode: 1
     importHiddenLayers: 0
     layerImportMode: 1
-    defaultPivotSpace: 0
+    defaultPivotSpace: 1
     defaultPivotAlignment: 7
     customPivotPosition: {x: 0.5, y: 0.5}
     spritePadding: 2
@@ -95,7 +95,7 @@ ScriptedImporter:
     addSortingGroup: 1
     addShadowCasters: 0
   importFileNodeState: 1
-  platformSettingsDirtyTick: 638401763454757743
+  platformSettingsDirtyTick: 638325335094276994
   textureAssetName: 
   singleSpriteImportData:
   - name: 
@@ -119,38 +119,18 @@ ScriptedImporter:
     tessellationDetail: 0
     uvTransform: {x: 0, y: 0}
   animatedSpriteImportData:
-  - name: enemy_test
+  - name: item_rapier
     originalName: 
-    pivot: {x: 0.5, y: -0.037037037}
-    alignment: 9
-    border: {x: 0, y: 0, z: 0, w: 0}
-    rect:
-      serializedVersion: 2
-      x: 4
-      y: 43
-      width: 26
-      height: 27
-    spriteID: b56f6d87b4b9cfe4fb4b42a31ee60243
-    spriteBone: []
-    spriteOutline: []
-    vertices: []
-    spritePhysicsOutline: []
-    indices: 
-    edges: []
-    tessellationDetail: 0
-    uvTransform: {x: 4, y: 43}
-  - name: enemy_test_Frame_1
-    originalName: 
-    pivot: {x: 0.61538464, y: -0.032258064}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 7
     border: {x: 0, y: 0, z: 0, w: 0}
     rect:
       serializedVersion: 2
       x: 4
       y: 4
-      width: 26
-      height: 31
-    spriteID: a770b8a6aa6e9aa48b94ca11147b630f
+      width: 22
+      height: 20
+    spriteID: 0a847856883a6c945849b8afd48a8ee3
     spriteBone: []
     spriteOutline: []
     vertices: []
@@ -162,28 +142,20 @@ ScriptedImporter:
   spriteSheetImportData: []
   asepriteLayers:
   - layerIndex: 0
-    guid: 181955559
-    name: enemy_test
+    guid: -1934337865
+    name: item_rapier
     layerFlags: 0
     layerType: 0
     blendMode: 0
     cells:
-    - name: enemy_test_Frame_0
+    - name: item_rapier
       frameIndex: 0
       cellRect:
-        x: 3
-        y: 1
-        width: 24
-        height: 25
-      spriteId: b56f6d87b4b9cfe4fb4b42a31ee60243
-    - name: enemy_test_Frame_1
-      frameIndex: 1
-      cellRect:
         x: 0
-        y: 1
-        width: 24
-        height: 29
-      spriteId: a770b8a6aa6e9aa48b94ca11147b630f
+        y: 0
+        width: 20
+        height: 18
+      spriteId: 0a847856883a6c945849b8afd48a8ee3
     linkedCells: []
     parentIndex: -1
   platformSettings:
@@ -225,4 +197,4 @@ ScriptedImporter:
     androidETC2FallbackOverride: 0
   secondarySpriteTextures: []
   spritePackingTag: 
-  canvasSize: {x: 32, y: 32}
+  canvasSize: {x: 20, y: 18}

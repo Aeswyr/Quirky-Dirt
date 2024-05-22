@@ -358,6 +358,15 @@ public class PlayerController : NetworkBehaviour
                     .SetRotation(rotation)
                     .FinishClientPriority();
                 break;
+            case 6:
+                attack
+                    .SetType(AttackType.THRUST)
+                    .SetHitboxSize(new Vector2(2f, 0.25f))
+                    .SetHitboxOffset(new Vector2(0, 0.0625f))
+                    .SetPosition(transform.position + 0.5f * Vector3.up + rotation * (2f * Vector2.right))
+                    .SetRotation(rotation)
+                    .FinishClientPriority();
+                break;
         }
     }
 

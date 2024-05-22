@@ -209,6 +209,7 @@ public class EnemyController : NetworkBehaviour
     [Command(requiresAuthority = false)] public void DoKnockback(HitData.KnockbackStrength strength, Vector2 dir) {
         knockbackTime = Time.time;
         isKnockback = true;
+        SetFacing((int)Mathf.Sign(-dir.x));
         switch (strength) {
                 case HitData.KnockbackStrength.SMALL:
                     knockbackDuration = 0.2f;

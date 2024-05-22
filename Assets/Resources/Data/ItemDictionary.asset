@@ -16,7 +16,7 @@ MonoBehaviour:
   - name: Straight Sword
     iconID: 0
     types: 0100000002000000
-    attackIDs: 0000000001000000
+    attackIDs: 000000000100000006000000
   - name: Bow
     iconID: 1
     types: 01000000
@@ -25,3 +25,11 @@ MonoBehaviour:
     iconID: 2
     types: 0100000002000000
     attackIDs: 0100000003000000
+  - name: Dueling Sword
+    iconID: 3
+    types: 0100000002000000
+    attackIDs: 06000000
+  - name: Storybook
+    iconID: 4
+    types: 0100000002000000
+    attackIDs: 

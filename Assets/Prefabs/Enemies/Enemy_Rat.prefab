@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2531175872975595167, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
+      propertyPath: dropTable
+      value: 
+      objectReference: {fileID: 11400000, guid: a4a48b8d227ea874194ff5af93bef5f1, type: 2}
     - target: {fileID: 1791571732925420522, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}
       propertyPath: m_Name
       value: Enemy_Rat

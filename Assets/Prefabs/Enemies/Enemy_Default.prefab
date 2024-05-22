@@ -209,6 +209,7 @@ MonoBehaviour:
   team: 2
   invuln: 0
   hpBar: {fileID: 7747088769080343460}
+  dropTable: {fileID: 11400000, guid: 7302b7675f4e1f34aab622e2a654b4c2, type: 2}
 --- !u!212 &5157198688624949047
 SpriteRenderer:
   m_ObjectHideFlags: 0

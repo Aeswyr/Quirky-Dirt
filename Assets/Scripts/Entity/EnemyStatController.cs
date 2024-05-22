@@ -5,6 +5,8 @@ using Mirror;
 
 public class EnemyStatController : StatController
 {
+
+    [SerializeField] private DropTable dropTable;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,22 +23,9 @@ public class EnemyStatController : StatController
     }
 
     [Server] private void CreateDrops() {
-        int[] pickups = null;
-
-        switch (Random.Range(0, 3))
-        {
-            case 0:
-                pickups = new[]{0};
-                break;
-            case 1:
-                pickups = new[]{0, 1};
-                break;
-            case 2:
-                pickups = new[]{0, 1, 2};
-                break;
-        }
-
-        GameManager.Instance.CreateDrop(pickups, transform.position);
+        int[] pickups = dropTable.RollDrops();
+        if (pickups.Length > 0)
+            GameManager.Instance.CreateDrop(pickups, transform.position);
     }
 
     public override void RegisterHit(HitData data, StatController sourceEntity, Transform source) {
