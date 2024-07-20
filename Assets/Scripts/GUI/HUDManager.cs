@@ -36,7 +36,7 @@ public class HUDManager : Singleton<HUDManager>
     }
 
     public void UpdateHP(int maxHP, int curHP, int curAR) {
-        mpBar.fillAmount = (float)curHP / maxHP;
+        hpBar.fillAmount = (float)curHP / maxHP;
         hpText.text = $"{curHP}/{maxHP}";
         if (curAR > 0) {
             armorToken.SetActive(true);

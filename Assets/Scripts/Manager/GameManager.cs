@@ -102,6 +102,12 @@ public class GameManager : NetworkSingleton<GameManager>
         public bool destoryOnHit;
         public bool enableWallCollisions;
         public bool isPrespawned;
+        public bool useEnemyAttacks;
+
+        public AttackBuilder UseEnemyAttacks() {
+            useEnemyAttacks = true;
+            return this;
+        }
 
         public AttackBuilder SetVelocity(Vector2 dir, float mag) {
             this.velocity = mag * dir;

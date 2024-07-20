@@ -28,6 +28,13 @@ public class EnemyController : NetworkBehaviour
 
     private int facing = 1;
 
+    private float actingLockout;
+
+    public bool Acting {
+        get;
+        private set;
+    }
+
     public enum EnemyState {
         idle, wander, search, chase
     }
@@ -76,8 +83,13 @@ public class EnemyController : NetworkBehaviour
             rbody.velocity = Vector2.zero;
             isKnockback = false;
         }
+
+        if (Acting)
+            return;
         
         target = FindTarget();
+
+        
 
         switch (behaviorState) {
             case EnemyState.idle:
@@ -130,7 +142,7 @@ public class EnemyController : NetworkBehaviour
         Vector3 targetPosition = target.position + offset;
         GoToPosition(targetPosition, baseSpeed);
     }
-
+    
     private void GoToPosition(Vector3 pos, float speed) {
         if (Vector3.Distance(transform.position, pos) < 0.1) {
 
@@ -207,6 +219,8 @@ public class EnemyController : NetworkBehaviour
     }
 
     [Command(requiresAuthority = false)] public void DoKnockback(HitData.KnockbackStrength strength, Vector2 dir) {
+        EndAction();
+
         knockbackTime = Time.time;
         isKnockback = true;
         SetFacing((int)Mathf.Sign(-dir.x));
@@ -229,5 +243,23 @@ public class EnemyController : NetworkBehaviour
                     break;
             }
         
+    }
+
+    public Transform GetCurrentTarget() {
+        return target;
+    }
+
+    public bool GetActionable() {
+        return !isKnockback && !Acting;
+    }
+
+    public void StartAction() {
+        animator.SetBool("move", false);
+
+        Acting = true;
+    }
+
+    public void EndAction() {
+        Acting = false;
     }
 }

@@ -9,9 +9,6 @@ public class PlayerStatController : StatController
     private int curStam, maxStam, lockStam;
 
     private float nextStamina, staminaDelay;
-    private float nextArmor, armorDelay;
-    private float nextFocus, focusDelay;
-
 
     private int luk, // luck
                 res, // resistance
@@ -48,12 +45,6 @@ public class PlayerStatController : StatController
             maxFP = 3;
 
             staminaDelay = 1.5f - 0.1f * phy; // INCREDIBLY TEMPORARY, DO REAL MATH
-
-            armorDelay = 3f;
-            focusDelay = 5f;
-
-            nextArmor = Time.time + armorDelay;
-            nextFocus = Time.time + focusDelay;
     }
 
     public bool CanSpendStam(int amt) {
@@ -68,25 +59,31 @@ public class PlayerStatController : StatController
         HUDManager.Instance.UpdateStam(maxStam, curStam, lockStam);
     }
 
+    public void AddArmor(int amt) {
+        curAR += amt;
+        if (curAR > maxAR)
+            curAR = maxAR;
+            
+        HUDManager.Instance.UpdateHP(maxHP, curHP, curAR);
+    }
+
+    public void AddFocus(int amt) {
+        curFP += amt;
+        if (curFP > maxFP)
+            curFP = maxFP;
+
+        HUDManager.Instance.UpdateMP(maxMP, curMP, curFP);
+    }
+
     void FixedUpdate() {
         if (curStam < maxStam - lockStam && Time.time > nextStamina) {
             curStam++;
             nextStamina = Time.time + staminaDelay;
             HUDManager.Instance.UpdateStam(maxStam, curStam, lockStam);
         }
-
-        if (curAR < maxAR && Time.time > nextArmor) {
-            curAR++;
-            nextArmor = Time.time + armorDelay;
-            HUDManager.Instance.UpdateHP(maxHP, curHP, curAR);
-        }
-
-        if (curFP < maxFP && Time.time > nextFocus) {
-            curFP++;
-            nextFocus = Time.time + focusDelay;
-            HUDManager.Instance.UpdateMP(maxMP, curMP, curFP);
-        }
     }
+
+    
 
     public override bool OnHit(HitData data, StatController sourceEntity, Transform source) {
         bool result = true;

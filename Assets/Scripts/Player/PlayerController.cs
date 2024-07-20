@@ -49,6 +49,7 @@ public class PlayerController : NetworkBehaviour
     private int attackID = -1;
     bool charging;
     float chargeStart;
+    int attackCharge;
     bool locked = false;
     bool inventoryOpen, pauseOpen;
 
@@ -287,6 +288,7 @@ public class PlayerController : NetworkBehaviour
         currentCombo = ComboList.DEFAULT;
 
         cancelCount = 0;
+        attackCharge = 0;
     }
 
     public void SetCancellable() {
@@ -307,6 +309,30 @@ public class PlayerController : NetworkBehaviour
 
         cancellable = true;
         rollCancellable = false;
+    }
+
+    public void ChargeAttack() {
+        if (!isLocalPlayer)
+            return;
+
+        attackCharge++;
+    }
+
+    public void SpawnEffect() {
+        Debug.Log("creating attack effect");
+        if (!isLocalPlayer)
+            return;
+        switch (attackID) {
+            case 7:
+                this.stats.AddArmor(attackCharge);
+                attackCharge = 0;
+                break;
+            case 8:
+                this.stats.AddFocus(attackCharge);
+                attackCharge = 0;
+                break;
+        }
+
     }
 
     public void SpawnAttack() {

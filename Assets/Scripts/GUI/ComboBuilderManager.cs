@@ -47,9 +47,11 @@ public class ComboBuilderManager : Singleton<ComboBuilderManager>
     public void GenerateComboList() {
         validCombos.Clear();
 
-        // add basic unarmed
+        // add basic moves
         validCombos.Add(4);
         validCombos.Add(5);
+        validCombos.Add(7);
+        validCombos.Add(8);
 
         // add equipment combos
         foreach (var item in InventoryManager.Instance.GetEquipment())

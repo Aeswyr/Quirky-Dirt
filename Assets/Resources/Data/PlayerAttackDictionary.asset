@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a405b28a8c0afd4e87a47e8145fe39f, type: 3}
-  m_Name: AttackDictionary
+  m_Name: PlayerAttackDictionary
   m_EditorClassIdentifier: 
   attackList:
   - name: Up Swing
@@ -41,3 +41,11 @@ MonoBehaviour:
     animationID: 6
     isCharged: 0
     data: {fileID: 11400000, guid: 37a53c860335e574697a28dece13da47, type: 2}
+  - name: Brace
+    animationID: 7
+    isCharged: 1
+    data: {fileID: 0}
+  - name: Steady Breathing
+    animationID: 7
+    isCharged: 1
+    data: {fileID: 0}

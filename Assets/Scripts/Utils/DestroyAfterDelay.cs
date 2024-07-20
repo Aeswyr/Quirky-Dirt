@@ -17,6 +17,6 @@ public class DestroyAfterDelay : MonoBehaviour
     void FixedUpdate()
     {
         if (Time.time > lifetime)
-            Destroy(this.gameObject);
+            Destroy(gameObject);
     }
 }
