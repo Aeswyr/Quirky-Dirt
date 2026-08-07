@@ -145,6 +145,8 @@ public class PlayerController : NetworkBehaviour
             ToAction();
             animator.SetTrigger("dodge");
 
+            stats.SetIntangible(true);
+
             activeCurve = rollCurve;
             controlOverrideWeight = rollOverrideWeight;
             curveStartTime = Time.time;

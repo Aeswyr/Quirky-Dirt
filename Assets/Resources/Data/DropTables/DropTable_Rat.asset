@@ -19,5 +19,11 @@ MonoBehaviour:
       weight: 1
   - noDropWeight: 1
     itemWeights:
+    - itemID: 0
+      weight: 1
+    - itemID: 1
+      weight: 1
+    - itemID: 2
+      weight: 1
     - itemID: 4
       weight: 1

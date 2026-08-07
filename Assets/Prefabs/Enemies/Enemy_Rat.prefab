@@ -126,6 +126,52 @@ MonoBehaviour:
   controller: {fileID: 2507550980056595920}
   animator: {fileID: 5296010308891516259}
   rbody: {fileID: 5328135282592948253}
+  attackList:
+  - animId: action0
+    motionCurve:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.38
+        value: 0
+        inSlope: -0.00050219183
+        outSlope: -0.00050219183
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 1
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 0.4
+        value: 1
+        inSlope: -0.0011027491
+        outSlope: -0.0011027491
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 1
+      - serializedVersion: 3
+        time: 0.8
+        value: 0
+        inSlope: -5.870258
+        outSlope: -5.870258
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.056312203
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 0
+    attackCooldown: 3
+    globalCooldown: 3
 --- !u!95 &5296010308891516259 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 8586229425238690588, guid: 9c7c943693b25c1409f400fd3df45014, type: 3}

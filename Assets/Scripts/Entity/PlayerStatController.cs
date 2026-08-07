@@ -87,7 +87,7 @@ public class PlayerStatController : StatController
 
     public override bool OnHit(HitData data, StatController sourceEntity, Transform source) {
         bool result = true;
-        if (curAR > 0) {
+        if (curAR > 0 && invuln == InvulnState.NONE) {
             curAR = Mathf.Max(0, curAR - data.GetDamage(atk, matk));
         } else {
             result = base.OnHit(data, sourceEntity, source);

@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a405b28a8c0afd4e87a47e8145fe39f, type: 3}
   m_Name: EnemyAttackDictionary
   m_EditorClassIdentifier: 
-  attackList: []
+  attackList:
+  - name: Rat0
+    animationID: 0
+    isCharged: 0
+    data: {fileID: 11400000, guid: f84a6f13e188de94b8cb2ca3ee6dd92a, type: 2}

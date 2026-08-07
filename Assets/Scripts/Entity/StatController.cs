@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public abstract class StatController : NetworkBehaviour
 {
     [SerializeField] private Team team;
-    [SerializeField] private InvulnState invuln;
+    [SerializeField] protected InvulnState invuln;
     [SerializeField] private Image hpBar;
 
     protected enum InvulnState {
@@ -53,6 +53,14 @@ public abstract class StatController : NetworkBehaviour
     private void SyncHealth(int oldHealth, int newHealth) {
         if (hpBar != null)
             hpBar.fillAmount = (float)newHealth / maxHP;
+    }
+
+    public void SetIntangible(bool state) {
+        invuln = state ? InvulnState.INTANGIBLE : InvulnState.NONE;
+    }
+
+    public void SetImpervious(bool state) {
+        invuln = state ? InvulnState.IMPERVIOUS : InvulnState.NONE;
     }
 
     public abstract void OnDeath();

@@ -150,6 +150,8 @@ MonoBehaviour:
   syncDirection: 0
   syncMode: 0
   syncInterval: 0
+  sprite: {fileID: 7631118775158707926}
+  col: {fileID: 2367760003142840300}
   playerAttackDictionary: {fileID: 11400000, guid: b1b18f3860411d84a876c6b40f84c269, type: 2}
   enemyAttackDictionary: {fileID: 11400000, guid: 1d895d51d27e0d342bbd9f3658200d5c, type: 2}
   destroyOnHit: 0

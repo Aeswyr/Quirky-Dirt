@@ -9,6 +9,9 @@ using UnityEngine.Events;
 
 public class HitboxController : NetworkBehaviour
 {
+    [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private Collider2D col;
+
     [SerializeField] private AttackDictionary playerAttackDictionary;
     [SerializeField] private AttackDictionary enemyAttackDictionary;
     [SerializeField] private bool destroyOnHit;
@@ -41,8 +44,10 @@ public class HitboxController : NetworkBehaviour
 
         this.owner = GameManager.Instance.GetRegisteredEntity(data.ownerID);
 
-        if (data.isPrespawned)
-            gameObject.SetActive(false);
+        if (data.isPrespawned) {
+            col.enabled = false;
+            sprite.enabled = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other) {
